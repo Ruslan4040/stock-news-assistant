@@ -2,7 +2,7 @@
 
 Run: python -m evals.run_all            every eval in full, then the README table
      python -m evals.run_all --smoke    every eval with --limit N (results in results/smoke/)
-     python -m evals.run_all --table    only rebuild the README table from existing results
+     python -m evals.run_all --table    only rebuild the README table and docs from results
 LLM answers come from the disk cache, so a repeated run costs no API calls.
 """
 
@@ -19,8 +19,11 @@ from src.data import sets
 
 STEPS = ["src.pipeline.batch", "evals.eval_data", "evals.eval_features", "evals.eval_relevance",
          "evals.eval_sentiment", "evals.eval_advisor", "evals.eval_simulator", "evals.eval_judge",
-         "evals.eval_lookahead", "evals.eval_ui", "evals.eval_llm_client"]
-NO_LIMIT = {"evals.eval_data", "evals.eval_features", "evals.eval_ui", "evals.eval_llm_client"}
+         "evals.eval_lookahead", "evals.eval_ui", "evals.eval_llm_client", "evals.walkthrough",
+         "evals.eval_targets"]
+NO_LIMIT = {"evals.eval_data", "evals.eval_features", "evals.eval_ui", "evals.eval_llm_client",
+            "evals.walkthrough", "evals.eval_targets"}
+FULL_ONLY = {"evals.eval_ui", "evals.walkthrough", "evals.eval_targets"}  # no reduced form
 START, END = "<!-- EVALS:START -->", "<!-- EVALS:END -->"
 KEYS = ["OPENROUTER_API_KEY", "FINNHUB_API_KEY"]
 SAMPLES = ["set_a.jsonl", "set_b.jsonl", "set_c.jsonl", "outcomes.csv", "phrasebank_sample.csv"]
@@ -41,8 +44,8 @@ def run_steps(limit: int | None) -> None:
         command = [sys.executable, "-m", module]
         if limit and module not in NO_LIMIT:
             command += ["--limit", str(limit)]
-        if limit and module == "evals.eval_ui":
-            continue  # the UI checklist has no reduced form
+        if limit and module in FULL_ONLY:
+            continue
         print(f"\n=== {' '.join(command[1:])}", flush=True)
         subprocess.run(command, cwd=ROOT, check=True)
 
@@ -80,6 +83,7 @@ def main() -> None:
         run_steps(load_config()["evals"]["smoke_limit"] if args.smoke else None)
     if not args.smoke:
         refresh_readme()
+        subprocess.run([sys.executable, "-m", "evals.render_docs"], cwd=ROOT, check=True)
         changed = changes(before, report.table_rows())
         print("\nChanged metrics (before -> after):" if changed else "\nNo metric changed.")
         print("\n".join(changed))

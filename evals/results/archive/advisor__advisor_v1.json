@@ -1,0 +1,261 @@
+{
+ "component": "advisor",
+ "run_date": "2026-11-14",
+ "model": "google/gemma-4-31b-it:free",
+ "prompt_version": "advisor_v1",
+ "eval_data": "data/processed/runs/advice_{a,b,c}.jsonl + data/processed/outcomes.csv",
+ "limit": null,
+ "metrics": [
+  {
+   "name": "A.hit_rate",
+   "value": 0.4961832061068702,
+   "ci_low": 0.40458015267175573,
+   "ci_high": 0.5801526717557252,
+   "n": 131,
+   "baselines": {
+    "always_buy": 0.6641,
+    "same_as_last_move": 0.4198
+   }
+  },
+  {
+   "name": "A.directional_share",
+   "value": 0.655,
+   "ci_low": null,
+   "ci_high": null,
+   "n": 200,
+   "baselines": {}
+  },
+  {
+   "name": "A.mean_return_chosen_horizon_pct",
+   "value": -0.029963790467697905,
+   "ci_low": -1.0111067308440231,
+   "ci_high": 0.9120256834804686,
+   "n": 131,
+   "baselines": {
+    "fixed_1d": -0.0447,
+    "fixed_1w": -0.0486
+   }
+  },
+  {
+   "name": "A.hit_rate_confidence_50_60",
+   "value": 0.2222222222222222,
+   "ci_low": 0.0,
+   "ci_high": 0.5555555555555556,
+   "n": 9,
+   "baselines": {}
+  },
+  {
+   "name": "A.hit_rate_confidence_60_80",
+   "value": 0.5128205128205128,
+   "ci_low": 0.4188034188034188,
+   "ci_high": 0.6068376068376068,
+   "n": 117,
+   "baselines": {}
+  },
+  {
+   "name": "A.hit_rate_confidence_80_100",
+   "value": 0.6,
+   "ci_low": 0.2,
+   "ci_high": 1.0,
+   "n": 5,
+   "baselines": {}
+  },
+  {
+   "name": "B.hit_rate",
+   "value": 0.48091603053435117,
+   "ci_low": 0.3969465648854962,
+   "ci_high": 0.5648854961832062,
+   "n": 131,
+   "baselines": {
+    "always_buy": 0.6718,
+    "same_as_last_move": 0.4275
+   }
+  },
+  {
+   "name": "B.directional_share",
+   "value": 0.655,
+   "ci_low": null,
+   "ci_high": null,
+   "n": 200,
+   "baselines": {}
+  },
+  {
+   "name": "B.mean_return_chosen_horizon_pct",
+   "value": -0.07891541000740698,
+   "ci_low": -1.0078580688005647,
+   "ci_high": 0.8857100762999757,
+   "n": 131,
+   "baselines": {
+    "fixed_1d": -0.1034,
+    "fixed_1w": -0.0975
+   }
+  },
+  {
+   "name": "B.hit_rate_confidence_50_60",
+   "value": 0.16666666666666666,
+   "ci_low": 0.0,
+   "ci_high": 0.5,
+   "n": 6,
+   "baselines": {}
+  },
+  {
+   "name": "B.hit_rate_confidence_60_80",
+   "value": 0.4918032786885246,
+   "ci_low": 0.4098360655737705,
+   "ci_high": 0.5819672131147541,
+   "n": 122,
+   "baselines": {}
+  },
+  {
+   "name": "B.hit_rate_confidence_80_100",
+   "value": 0.6666666666666666,
+   "ci_low": 0.0,
+   "ci_high": 1.0,
+   "n": 3,
+   "baselines": {}
+  },
+  {
+   "name": "C.hit_rate",
+   "value": 0.5307692307692308,
+   "ci_low": 0.43846153846153846,
+   "ci_high": 0.6153846153846154,
+   "n": 130,
+   "baselines": {
+    "always_buy": 0.4538,
+    "same_as_last_move": 0.5231
+   }
+  },
+  {
+   "name": "C.directional_share",
+   "value": 0.6532663316582915,
+   "ci_low": null,
+   "ci_high": null,
+   "n": 199,
+   "baselines": {}
+  },
+  {
+   "name": "C.mean_return_chosen_horizon_pct",
+   "value": 0.5035913438841992,
+   "ci_low": -0.5691585601251621,
+   "ci_high": 1.6856886991539177,
+   "n": 130,
+   "baselines": {
+    "fixed_1d": 0.1121,
+    "fixed_1w": 0.4687
+   }
+  },
+  {
+   "name": "C.hit_rate_confidence_50_60",
+   "value": 0.4,
+   "ci_low": 0.0,
+   "ci_high": 0.8,
+   "n": 5,
+   "baselines": {}
+  },
+  {
+   "name": "C.hit_rate_confidence_60_80",
+   "value": 0.5258620689655172,
+   "ci_low": 0.43103448275862066,
+   "ci_high": 0.6206896551724138,
+   "n": 116,
+   "baselines": {}
+  },
+  {
+   "name": "C.hit_rate_confidence_80_100",
+   "value": 0.6666666666666666,
+   "ci_low": 0.3333333333333333,
+   "ci_high": 0.8888888888888888,
+   "n": 9,
+   "baselines": {}
+  }
+ ],
+ "details": {
+  "A": {
+   "decisions": 200,
+   "valid": 200,
+   "incomplete_transport": 0,
+   "invalid_output": 0,
+   "actions": {
+    "buy": 99,
+    "hold": 69,
+    "sell": 32
+   },
+   "horizons": {
+    "1w": 198,
+    "1d": 2
+   },
+   "news_used_share": 0.885,
+   "mean_confidence": 62.98,
+   "hit_rate_by_action": {
+    "buy": 0.6061,
+    "sell": 0.1562
+   },
+   "hit_rate_by_horizon": {
+    "1d": 0.0,
+    "1w": 0.5
+   },
+   "hit_rate_by_news_used": {
+    "false": 0.6154,
+    "true": 0.4831
+   }
+  },
+  "B": {
+   "decisions": 200,
+   "valid": 200,
+   "incomplete_transport": 0,
+   "invalid_output": 0,
+   "actions": {
+    "buy": 92,
+    "hold": 69,
+    "sell": 39
+   },
+   "horizons": {
+    "1w": 199,
+    "1d": 1
+   },
+   "news_used_share": 0.885,
+   "mean_confidence": 62.88,
+   "hit_rate_by_action": {
+    "buy": 0.6087,
+    "sell": 0.1795
+   },
+   "hit_rate_by_horizon": {
+    "1d": 0.0,
+    "1w": 0.4846
+   },
+   "hit_rate_by_news_used": {
+    "false": 0.6364,
+    "true": 0.4667
+   }
+  },
+  "C": {
+   "decisions": 200,
+   "valid": 199,
+   "incomplete_transport": 1,
+   "invalid_output": 0,
+   "actions": {
+    "buy": 80,
+    "hold": 69,
+    "sell": 50
+   },
+   "horizons": {
+    "1w": 198,
+    "1d": 1
+   },
+   "news_used_share": 0.9899,
+   "mean_confidence": 63.8,
+   "hit_rate_by_action": {
+    "buy": 0.4875,
+    "sell": 0.6
+   },
+   "hit_rate_by_horizon": {
+    "1d": 1.0,
+    "1w": 0.5271
+   },
+   "hit_rate_by_news_used": {
+    "false": 1.0,
+    "true": 0.5271
+   }
+  }
+ }
+}

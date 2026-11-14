@@ -1,0 +1,137 @@
+{
+ "component": "ui",
+ "run_date": "2026-11-14",
+ "model": null,
+ "prompt_version": null,
+ "eval_data": "3 demo cases from config.yaml",
+ "limit": null,
+ "metrics": [
+  {
+   "name": "checks_passed_rate",
+   "value": 1.0,
+   "ci_low": 1.0,
+   "ci_high": 1.0,
+   "n": 21,
+   "baselines": {},
+   "passed": 21
+  },
+  {
+   "name": "demo_cases_passed_rate",
+   "value": 1.0,
+   "ci_low": 1.0,
+   "ci_high": 1.0,
+   "n": 3,
+   "baselines": {},
+   "passed": 3
+  }
+ ],
+ "details": {
+  "checklist": [
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "app runs without an exception",
+    "passed": true
+   },
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "three tabs render",
+    "passed": true
+   },
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "advice card equals the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "price features equal the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "headline table equals the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "trace panel shows the calls of this request",
+    "passed": true
+   },
+   {
+    "case": "NVDA 2019-05-15",
+    "check": "simulator and evals tabs show stored results",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "app runs without an exception",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "three tabs render",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "advice card equals the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "price features equal the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "headline table equals the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "trace panel shows the calls of this request",
+    "passed": true
+   },
+   {
+    "case": "JPM 2019-10-15",
+    "check": "simulator and evals tabs show stored results",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "app runs without an exception",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "three tabs render",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "advice card equals the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "price features equal the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "headline table equals the pipeline output",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "trace panel shows the calls of this request",
+    "passed": true
+   },
+   {
+    "case": "TSLA 2026-10-22",
+    "check": "simulator and evals tabs show stored results",
+    "passed": true
+   }
+  ]
+ }
+}

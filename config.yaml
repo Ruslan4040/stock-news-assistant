@@ -139,8 +139,10 @@ evals:
   memory_probe_tolerance: 0.05 # answer within +-5% of the true close
   judge_n: 100                 # explanations checked by the judge
   judge_human_n: 20
+  judge_planted_shift_pct: 6.5   # the planted wrong 20-day return is off by this much
   fresh_labels_n: 100
   sentiment_batch: 10          # sentences per sentiment call in the PhraseBank eval
+  sentiment_dev_n: 100         # first PhraseBank items: the only ones read when writing a new prompt
   phrasebank: {repo: "takala/financial_phrasebank", file: "data/FinancialPhraseBank-v1.0.zip", member: "Sentences_75Agree.txt", n: 400}
   finbert_model: "ProsusAI/finbert"
   features_reference: {tickers: ["NVDA", "JPM", "HD"], n_dates: 5}

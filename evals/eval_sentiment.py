@@ -104,12 +104,18 @@ def main() -> None:
     phrase = label_groups(phrasebank_frame(limit), None)
     fresh = label_groups(fresh_frame(limit), "company")
     relevant = fresh[fresh["relevant"] == "y"]
+    heldout = phrase[phrase["id"] > load_config()["evals"]["sentiment_dev_n"]]
     metrics, details, errors = [], {}, []
-    for name, frame in (("phrasebank", phrase), ("fresh", fresh), ("fresh_relevant", relevant)):
+    datasets = (("phrasebank", phrase), ("phrasebank_heldout", heldout), ("fresh", fresh),
+                ("fresh_relevant", relevant))
+    for name, frame in datasets:
+        if frame.empty:
+            continue
         rows, info = score(name, frame)
         metrics += rows
         details[name] = info
-        errors += errors_table(name, frame)[: common.WORST_ERRORS // 2]
+        if name in ("phrasebank", "fresh"):
+            errors += errors_table(name, frame)[: common.WORST_ERRORS // 2]
     by_name = {row["name"]: row for row in metrics}
     details["sentiment_gap_accuracy"] = {
         "llm": by_name["phrasebank.accuracy"]["value"] - by_name["fresh.accuracy"]["value"],

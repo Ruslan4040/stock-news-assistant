@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from evals import common, eval_advisor, eval_relevance, eval_sentiment, report
+from evals import common, eval_advisor, eval_judge, eval_relevance, eval_sentiment, report
 from evals.eval_simulator import curve_metric
 
 
@@ -124,3 +124,26 @@ def test_render_docs_placeholders(monkeypatch: pytest.MonkeyPatch) -> None:
             "{{advisor:missing_metric}} {{judge:anything}}")
     assert render_docs.render(text) == (
         "0.531 53.1% [47.0%, 59.0%] 173 48.0% 18 37 2026-11-14 n/a n/a")
+
+
+def test_target_checks_handle_missing_results() -> None:
+    """A criterion is met, not met, or not measured when a number is missing."""
+    from evals.eval_targets import all_met, at_least
+
+    assert at_least(0.81, 0.80) is True and at_least(0.79, 0.80) is False
+    assert at_least(None, 0.80) is None and at_least(0.5, None) is None
+    assert all_met(True, True) is True
+    assert all_met(True, None) is None
+    assert all_met(True, None, False) is False
+
+
+def test_planted_false_claims() -> None:
+    """Even items get the invented buyback, odd items a 20-day return off by the config shift."""
+    item = {"explanation": "Up 2%.", "inputs": {"price_features": {"ret_20d_pct": 3.0},
+                                                 "headlines": []}}
+    text, key = eval_judge.planted(item, 0)
+    assert text == f"Up 2%. {eval_judge.PLANTED_FACT}" and key == "buyback"
+    text, key = eval_judge.planted(item, 1)
+    assert key == "9.50" and text == "Up 2%. The 20-day return is 9.50%."  # 3.0 + 6.5
+    with_buyback = {**item, "inputs": {**item["inputs"], "headlines": [{"text": "Buyback news"}]}}
+    assert eval_judge.planted(with_buyback, 0)[1] == "9.50"

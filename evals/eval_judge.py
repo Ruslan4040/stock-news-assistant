@@ -5,6 +5,8 @@ Run: python -m evals.eval_judge [--limit N]
    Metric: share of claims supported.
 2. The claims of the first explanations go to evals/labels/judge_claims.csv for labeling.
    Metric: agreement between the judge and those labels.
+3. The same explanations get one false sentence added (a wrong 20-day return or an invented
+   buyback). Metric: share of these planted claims the judge rejects.
 """
 
 import json
@@ -19,6 +21,7 @@ from src.pipeline.run import PipelineResult
 
 COMPONENT = "judge"
 SOURCE_SETS = "AC"
+PLANTED_FACT = "The company also announced a $10 billion share buyback this week."
 SHEET_COLUMNS = ["explanation_id", "claim_no", "claim", "inputs", "explanation",
                  "human_supported", "labeled_by"]
 
@@ -71,24 +74,61 @@ def write_sheet(judged: list[dict]) -> None:
     pd.DataFrame(rows, columns=SHEET_COLUMNS).to_csv(sheet_path(), index=False)
 
 
-def agreement(judged: list[dict]) -> tuple[dict, list[dict], dict]:
-    """Compare the judge with the labeled claims; return the metric, disagreements, provenance."""
+def agreement(judged: list[dict]) -> tuple[dict, list[dict], dict, dict]:
+    """Compare the judge with the labels; return the metric, disagreements, provenance, baseline.
+
+    Baseline: a judge that calls every claim supported.
+    """
     sheet = pd.read_csv(sheet_path(), dtype=str, keep_default_na=False)
     labeled = sheet[sheet["human_supported"].isin(["y", "n"])]
     verdicts = {(item["id"], n): claim
                 for item in judged for n, claim in enumerate(item["claims"], start=1)}
-    same, disagreements = [], []
+    same, humans, disagreements = [], [], []
     for row in labeled.itertuples():
         claim = verdicts.get((row.explanation_id, int(row.claim_no)))
         if claim is None:
             continue
         human = row.human_supported == "y"
+        humans.append(1.0 if human else 0.0)
         same.append(1.0 if human == claim["supported"] else 0.0)
         if human != claim["supported"]:
             disagreements.append(error_row("judge_vs_label", row.explanation_id, claim,
                                            "y" if human else "n"))
     provenance = labeled["labeled_by"].value_counts().to_dict()
-    return common.bootstrap(common.mean, np.array(same)), disagreements, provenance
+    baseline = {"always_supported": round(float(np.mean(humans)), 4)} if humans else {}
+    return common.bootstrap(common.mean, np.array(same)), disagreements, provenance, baseline
+
+
+def planted(item: dict, index: int) -> tuple[str, str]:
+    """Return the explanation with one false sentence added, and a word found in that claim."""
+    if index % 2 or "buyback" in json.dumps(item["inputs"]).lower():
+        shift = load_config()["evals"]["judge_planted_shift_pct"]
+        value = f"{item['inputs']['price_features']['ret_20d_pct'] + shift:.2f}"
+        return f"{item['explanation']} The 20-day return is {value}%.", value
+    return f"{item['explanation']} {PLANTED_FACT}", "buyback"
+
+
+def catch_planted(pair: tuple[int, dict]) -> dict:
+    """Judge one explanation with a planted false claim and say whether the judge rejected it."""
+    index, item = pair
+    text, key = planted(item, index)
+    verdict = judge.run(item["inputs"], text)
+    rejected = [c for c in verdict.claims if not c.supported]
+    before = sum(not c["supported"] for c in item["claims"])
+    caught = any(key in c.text for c in rejected) or len(rejected) > before
+    return {"id": item["id"], "error": verdict.error, "caught": caught, "planted": text,
+            "claims": [c.model_dump() for c in verdict.claims]}
+
+
+def planted_check(done: list[dict]) -> tuple[dict, list[dict]]:
+    """Return the catch rate over planted false claims and the explanations the judge missed."""
+    items = list(enumerate(done[: load_config()["evals"]["judge_human_n"]]))
+    checked = [r for r in common.parallel_map(catch_planted, items) if not r["error"]]
+    caught = np.array([1.0 if r["caught"] else 0.0 for r in checked])
+    missed = [{"type": "planted_claim_missed", "id": r["id"], "claim": r["planted"][-120:],
+               "judge_supported": True, "label_supported": "n", "judge_reason": ""}
+              for r in checked if not r["caught"]]
+    return common.bootstrap(common.mean, caught), missed
 
 
 def error_row(kind: str, explanation_id: str, claim: dict, label: str = "") -> dict:
@@ -107,22 +147,26 @@ def main() -> None:
     total = np.array([len(item["claims"]) for item in done])
     if not limit:
         write_sheet(done)
-    stat, disagreements, provenance = agreement(done) if not limit else (
-        {"value": None, "ci_low": None, "ci_high": None, "n": 0}, [], {})
+    stat, disagreements, provenance, baseline = agreement(done) if not limit else (
+        {"value": None, "ci_low": None, "ci_high": None, "n": 0}, [], {}, {})
+    planted_stat, missed = planted_check(done)
     metrics = [
         common.metric_row("claims_supported_rate",
                           common.bootstrap(supported_share, supported, total),
                           claims=int(total.sum()), explanations=len(done)),
-        common.metric_row("judge_label_agreement", stat),
+        common.metric_row("judge_label_agreement", stat, baseline),
+        common.metric_row("planted_false_claims_caught_rate", planted_stat,
+                          {"always_supported": 0.0}),
     ]
     unsupported = [error_row("unsupported_claim", item["id"], claim)
                    for item in done for claim in item["claims"] if not claim["supported"]]
     details = {"judge_errors": len(judged) - len(done), "labeled_by": provenance,
+               "planted_shift_pct": load_config()["evals"]["judge_planted_shift_pct"],
                "claims_per_explanation": round(float(total.mean()), 2) if len(total) else None}
     version = load_config()["prompts"][COMPONENT]
     data = "100 advisor explanations (sets A and C) + evals/labels/judge_claims.csv"
     path = common.write_result(COMPONENT, metrics, data, version, limit, details)
-    common.write_errors(COMPONENT, disagreements + unsupported, limit)
+    common.write_errors(COMPONENT, disagreements + missed + unsupported, limit)
     common.show(path)
 
 

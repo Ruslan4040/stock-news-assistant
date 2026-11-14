@@ -1,0 +1,93 @@
+{
+ "component": "lookahead",
+ "run_date": "2026-11-14",
+ "model": "google/gemma-4-31b-it:free",
+ "prompt_version": "memory_probe_v1",
+ "eval_data": "advisor runs on sets A/B/C, live advice (D), price files, sentiment eval data",
+ "limit": null,
+ "metrics": [
+  {
+   "name": "A.hit_rate",
+   "value": 0.4961832061068702,
+   "ci_low": 0.40458015267175573,
+   "ci_high": 0.5801526717557252,
+   "n": 131,
+   "baselines": {
+    "always_buy": 0.6641
+   }
+  },
+  {
+   "name": "B.hit_rate",
+   "value": 0.48091603053435117,
+   "ci_low": 0.3969465648854962,
+   "ci_high": 0.5648854961832062,
+   "n": 131,
+   "baselines": {
+    "always_buy": 0.6718
+   }
+  },
+  {
+   "name": "C.hit_rate",
+   "value": 0.5307692307692308,
+   "ci_low": 0.43846153846153846,
+   "ci_high": 0.6153846153846154,
+   "n": 130,
+   "baselines": {
+    "always_buy": 0.4538
+   }
+  },
+  {
+   "name": "A_minus_B.hit_rate_paired",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 124,
+   "baselines": {}
+  },
+  {
+   "name": "D.hit_rate",
+   "value": null,
+   "ci_low": null,
+   "ci_high": null,
+   "n": 0,
+   "baselines": {}
+  },
+  {
+   "name": "memory_probe.2019.within_5pct",
+   "value": 0.36,
+   "ci_low": 0.23950000000000043,
+   "ci_high": 0.5,
+   "n": 50,
+   "baselines": {},
+   "hits_vs_raw_close": 13,
+   "no_answer": 0,
+   "median_pct_error_raw": 0.20420419659849653
+  },
+  {
+   "name": "memory_probe.post_cutoff.within_5pct",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 50,
+   "baselines": {},
+   "hits_vs_raw_close": 0,
+   "no_answer": 50,
+   "median_pct_error_raw": Infinity
+  },
+  {
+   "name": "sentiment_gap.accuracy_phrasebank_minus_fresh",
+   "value": -0.01750000000000007,
+   "ci_low": -0.0824999999999999,
+   "ci_high": 0.045062499999999985,
+   "n": 100,
+   "baselines": {}
+  }
+ ],
+ "details": {
+  "llm_peeks": false,
+  "rule": "A.ci_low > C.ci_high and A.ci_low > B.ci_high (hit rate)",
+  "a_b_same_action_share": 0.93,
+  "live_advice_recorded": 8,
+  "outcome_pending": 8
+ }
+}

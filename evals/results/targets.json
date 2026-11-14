@@ -1,0 +1,103 @@
+{
+ "component": "targets",
+ "run_date": "2026-11-14",
+ "model": null,
+ "prompt_version": null,
+ "eval_data": "all results files",
+ "limit": null,
+ "metrics": [
+  {
+   "name": "criteria_met_rate",
+   "value": 1.0,
+   "ci_low": 1.0,
+   "ci_high": 1.0,
+   "n": 13,
+   "baselines": {},
+   "met": 13,
+   "not_measured": 0
+  }
+ ],
+ "details": {
+  "table": "| Component | Target (set in phase 1) | Result | Met |\n|---|---|---|---|\n| Data collector | missing days, duplicates in sets, look-ahead violations: all 0 | 0.000 / 0.000 / 0.000 | yes |\n| Features | exact match on 15 of 15 cases | 15 of 15 | yes |\n| LLM client | valid JSON on the first answer ≥ 0.95; invalid after retry ≤ 0.02 | 0.998; 0.001 | yes |\n| UI | all demo cases pass the checklist | 3 of 3 | yes |\n| Relevance filter | F1 ≥ 0.80, precision ≥ 0.80, F1 above keep-all | F1 0.975, precision 0.951, keep-all F1 0.561 | yes |\n| Sentiment (PhraseBank) | macro-F1 ≥ 0.80, above always-neutral, within 0.05 of FinBERT | 0.899 (FinBERT 0.927, always-neutral 0.253) | yes |\n| Sentiment (fresh headlines) | macro-F1 ≥ 0.70 | 0.898 | yes |\n| Explanations | claims supported ≥ 0.90; judge vs label agreement ≥ 0.80 | 0.998; 0.991 | yes |\n| Advisor: direction (set C) | hit rate above always-buy and same-as-last-move | 0.531 vs 0.454 and 0.523 | yes |\n| Advisor: horizon (set C) | mean return with the chosen horizon ≥ the better fixed one | 0.504% vs 0.469% | yes |\n| Advisor: confidence (set C) | bucket 80–100 at least 5 points above bucket 50–60 | 0.667 vs 0.400 | yes |\n| Trader (set C) | total return > 0 and max drawdown below buy & hold | return 0.025, drawdown 0.064 vs 0.292 | yes |\n| Look-ahead experiment | a clear yes / no by the rule of spec §8 | the LLM peeks: False | yes |",
+  "rows": [
+   {
+    "component": "Data collector",
+    "target": "missing days, duplicates in sets, look-ahead violations: all 0",
+    "result": "0.000 / 0.000 / 0.000",
+    "met": true
+   },
+   {
+    "component": "Features",
+    "target": "exact match on 15 of 15 cases",
+    "result": "15 of 15",
+    "met": true
+   },
+   {
+    "component": "LLM client",
+    "target": "valid JSON on the first answer ≥ 0.95; invalid after retry ≤ 0.02",
+    "result": "0.998; 0.001",
+    "met": true
+   },
+   {
+    "component": "UI",
+    "target": "all demo cases pass the checklist",
+    "result": "3 of 3",
+    "met": true
+   },
+   {
+    "component": "Relevance filter",
+    "target": "F1 ≥ 0.80, precision ≥ 0.80, F1 above keep-all",
+    "result": "F1 0.975, precision 0.951, keep-all F1 0.561",
+    "met": true
+   },
+   {
+    "component": "Sentiment (PhraseBank)",
+    "target": "macro-F1 ≥ 0.80, above always-neutral, within 0.05 of FinBERT",
+    "result": "0.899 (FinBERT 0.927, always-neutral 0.253)",
+    "met": true
+   },
+   {
+    "component": "Sentiment (fresh headlines)",
+    "target": "macro-F1 ≥ 0.70",
+    "result": "0.898",
+    "met": true
+   },
+   {
+    "component": "Explanations",
+    "target": "claims supported ≥ 0.90; judge vs label agreement ≥ 0.80",
+    "result": "0.998; 0.991",
+    "met": true
+   },
+   {
+    "component": "Advisor: direction (set C)",
+    "target": "hit rate above always-buy and same-as-last-move",
+    "result": "0.531 vs 0.454 and 0.523",
+    "met": true
+   },
+   {
+    "component": "Advisor: horizon (set C)",
+    "target": "mean return with the chosen horizon ≥ the better fixed one",
+    "result": "0.504% vs 0.469%",
+    "met": true
+   },
+   {
+    "component": "Advisor: confidence (set C)",
+    "target": "bucket 80–100 at least 5 points above bucket 50–60",
+    "result": "0.667 vs 0.400",
+    "met": true
+   },
+   {
+    "component": "Trader (set C)",
+    "target": "total return > 0 and max drawdown below buy & hold",
+    "result": "return 0.025, drawdown 0.064 vs 0.292",
+    "met": true
+   },
+   {
+    "component": "Look-ahead experiment",
+    "target": "a clear yes / no by the rule of spec §8",
+    "result": "the LLM peeks: False",
+    "met": true
+   }
+  ]
+ }
+}

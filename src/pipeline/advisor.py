@@ -62,10 +62,16 @@ def known_ids(allowed: list[int]) -> Validator:
 
 
 def run(
-    decision: Decision, labeled: list[LabeledHeadline], trace_id: str | None = None
+    decision: Decision,
+    labeled: list[LabeledHeadline],
+    trace_id: str | None = None,
+    version: str | None = None,
 ) -> Advice:
-    """Combine price features and labeled relevant headlines into one suggestion."""
-    version = load_config()["prompts"][COMPONENT]
+    """Combine price features and labeled relevant headlines into one suggestion.
+
+    `version` overrides the prompt version from config (used to compare prompt versions).
+    """
+    version = version or load_config()["prompts"][COMPONENT]
     payload = build_payload(decision, labeled)
     rule = known_ids([h.id for h in labeled])
     result = call_llm(COMPONENT, version, payload, AdviceOutput, rule, trace_id)

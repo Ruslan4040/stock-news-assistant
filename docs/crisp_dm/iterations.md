@@ -22,3 +22,14 @@ Each entry: the trigger (a metric and its value), the phase revisited, the chang
 - Change: the full message is kept for parsing; a quota error pauses all threads and does not count as a retry; requests are paced at the quota rate of 30 per minute.
 - Before → after: incomplete tasks 6 of 40 → 0 of 80. Throughput did not improve (9.1 → 7.3 successful calls per minute while other eval jobs shared the quota): a probe of 60 extra requests in one minute got 50 quota errors, so the limit is the free quota itself, with about 3 HTTP attempts per successful answer.
 - Consequence for scope: the run uses 200 decisions per set instead of 300 (`evals.batch_limit`). The first 200 of a fixed random order are used, so the run can be extended later without changing earlier results.
+
+## Loop 4 — 2026-11-15 — Evaluation of the advisor → Modeling (negative result, change rejected)
+- Trigger: `advisor_v1` chose the 1-week horizon in 198 of 200 decisions of set A and 198 of 199 of set C (`evals/results/advisor.json`, details → horizons), so the horizon-choice metric measured almost nothing.
+- Phase revisited: 4 (advisor prompt).
+- Change tried: `prompts/advisor_v2.md` adds a rule for choosing the horizon (1d for a fresh event already moving the price, 1w for a slower story) and two short examples. Compared with `python -m evals.compare_advisor_prompts` on the first 50 decisions of sets A and C in the run order (`evals/results/advisor_prompt_comparison.json`).
+- Before → after (v1 → v2):
+  - share of 1d horizons: A 0.00 → 0.06, C 0.00 → 0.04;
+  - share of buy/sell answers: A 0.62 → 0.78, C 0.52 → 0.84;
+  - hit rate: A 0.613 (n 31) → 0.590 (n 39); C 0.538 (n 26) → 0.500 (n 42);
+  - mean return with the chosen horizon, set C: +0.95% → −0.38%.
+- Decision: v2 is rejected and `advisor_v1` stays in `config.yaml`. The horizon barely changed, and the extra buy/sell answers were less accurate. All CIs overlap, so v2 is not proven worse either, but it gives no evidence of an improvement worth an extra 400 calls of the free quota for the full run. Both prompt files are kept.

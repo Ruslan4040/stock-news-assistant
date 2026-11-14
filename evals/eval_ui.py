@@ -81,7 +81,7 @@ def check_case(ticker: str, day: date) -> list[dict]:
         "headline table equals the pipeline output": headlines_match(app, expected),
         "trace panel shows the calls of this request": trace_matches(app, expected),
         "simulator and evals tabs show stored results":
-            any("Metric" in d.value.columns for d in app.dataframe),
+            sum("Metric" in d.value.columns for d in app.dataframe) >= 2,
     }
     case = f"{ticker} {day.isoformat()}"
     return [{"case": case, "check": name, "passed": bool(ok)} for name, ok in checks.items()]

@@ -1,0 +1,11 @@
+period,id,ticker,company,date,raw_close,split_adjusted_close,answer,pct_error_raw,pct_error_adjusted,hit
+post_cutoff,1,GOOGL,Alphabet Inc.,2026-04-17,341.67999267578125,341.67999267578125,,inf,inf,False
+post_cutoff,2,NVDA,NVIDIA Corporation,2026-01-28,191.52000427246094,191.52000427246094,,inf,inf,False
+post_cutoff,3,TSLA,"Tesla, Inc.",2026-08-25,350.25,350.25,,inf,inf,False
+post_cutoff,4,JPM,JPMorgan Chase & Co.,2025-12-11,317.3800048828125,317.3800048828125,,inf,inf,False
+post_cutoff,5,INTC,Intel Corporation,2026-07-08,110.23999786376953,110.23999786376953,,inf,inf,False
+post_cutoff,6,NFLX,"Netflix, Inc.",2026-02-05,80.87000274658203,80.87000274658203,,inf,inf,False
+post_cutoff,7,AVGO,Broadcom Inc.,2026-02-12,331.1700134277344,331.1700134277344,,inf,inf,False
+post_cutoff,8,HD,"The Home Depot, Inc.",2025-11-26,355.4700012207031,355.4700012207031,,inf,inf,False
+post_cutoff,9,GOOGL,Alphabet Inc.,2026-11-05,282.57000732421875,282.57000732421875,,inf,inf,False
+post_cutoff,10,NVDA,NVIDIA Corporation,2026-08-05,219.22000122070312,219.22000122070312,,inf,inf,False

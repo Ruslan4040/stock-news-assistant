@@ -1,0 +1,44 @@
+ts,component,error,first_error,attempts,latency_s,output
+2026-11-14T19:38:32.467+00:00,sentiment,invalid_output: schema: Invalid JSON: EOF while parsing an object at line 3 column 5 at [],nan,4,74.162,"{
+  ""items"": [
+    {"
+2026-11-14T22:11:39.037+00:00,relevance,transport: HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.,nan,19,768.186,nan
+2026-11-14T20:02:36.316+00:00,relevance,"transport: HTTP 502: { ""error"": { ""code"": 500, ""message"": ""Internal error encountered."", ""status"": ""INTERNAL"" } }",nan,11,434.305,nan
+2026-11-14T20:04:22.221+00:00,relevance,"transport: HTTP 502: { ""error"": { ""code"": 500, ""message"": ""Internal error encountered."", ""status"": ""INTERNAL"" } }",nan,11,433.58,nan
+2026-11-14T19:59:11.326+00:00,sentiment,"transport: HTTP 429: { ""error"": { ""code"": 429, ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.go",nan,11,385.706,nan
+2026-11-14T21:20:55.032+00:00,advisor,,nan,41,1450.197,"{
+ ""action"": ""buy"",
+ ""horizon"": ""1w"",
+ ""confidence"": 65,
+ ""explanation"": ""The stock shows a strong positive trend with a 7.94% return over 20 days and a 1.49% gain today. Positive sentiment is driven by Wall Street expecting earnings growth in the upcoming report. Given the high volatility level of "
+2026-11-14T21:08:22.348+00:00,advisor,,nan,42,1272.562,"{
+ ""action"": ""hold"",
+ ""horizon"": ""1w"",
+ ""confidence"": 55,
+ ""explanation"": ""The stock shows strong positive momentum with a 6.81% return over 5 days and 12.22% over 20 days, despite a 1.67% dip today. However, the only available headline is neutral and provides no specific catalyst. Given the high vo"
+2026-11-14T21:05:00.278+00:00,advisor,,nan,32,1207.201,"{
+ ""action"": ""buy"",
+ ""horizon"": ""1w"",
+ ""confidence"": 65,
+ ""explanation"": ""The stock shows a positive trend with returns of 0.77% over 1 day, 0.73% over 5 days, and 1.8% over 20 days. This technical strength is supported by a positive headline suggesting the company may surge to record highs followin"
+2026-11-14T21:09:10.459+00:00,relevance,,nan,32,1111.325,"{
+  ""items"": [
+    {
+      ""id"": 1,
+      ""relevant"": false,
+      ""reason"": ""About Gradient Capital and Schwab""
+    },
+    {
+      ""id"": 2,
+      ""relevant"": false,
+      ""reason"": ""Generic company news header""
+    },
+    {
+      ""id"": 3,
+      ""relevant"": true,
+      ""reason"": ""Broadcom's buyout a"
+2026-11-14T21:05:23.232+00:00,advisor,,nan,27,929.233,"{
+  ""action"": ""sell"",
+  ""horizon"": ""1w"",
+  ""confidence"": 68,
+  ""explanation"": ""Multiple headlines indicate a negative market reaction to a $3 billion convertible preferred stock offering, with shares trading lower and falling after hours. This negative sentiment is reflected in the price features, w"

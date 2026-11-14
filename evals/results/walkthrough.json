@@ -1,0 +1,57 @@
+{
+ "component": "walkthrough",
+ "run_date": "2026-11-14",
+ "model": null,
+ "prompt_version": null,
+ "eval_data": "demo case NVDA 2019-05-15",
+ "limit": null,
+ "metrics": [],
+ "details": {
+  "ticker": "NVDA",
+  "date": "2019-05-15",
+  "company": "NVIDIA Corporation",
+  "features": {
+   "ret_1d_pct": -1.52,
+   "ret_5d_pct": -8.25,
+   "ret_20d_pct": -15.21,
+   "volatility_20d_pct": 2.17,
+   "volatility_level": "high"
+  },
+  "headlines": 8,
+  "relevant": 3,
+  "sentiment_counts": {
+   "positive": 2,
+   "negative": 1,
+   "neutral": 0
+  },
+  "headline_table": "| # | Published | Headline | Relevant | Sentiment |\n|---|---|---|---|---|\n| 1 | 2019-05-14 | Shares of several semiconductor and microchip companies are trading higher as US markets rebound on renewed optimism surrounding US-China trade talks. | no |  |\n| 2 | 2019-05-14 | Stifel Nicolaus Maintains Hold on NVIDIA Corporation - Common Stock, Lowers Price Target to $145 | yes | negative |\n| 3 | 2019-05-13 | Morgan Stanley Earlier Maintained Equal-Weight on NVIDIA Corporation - Common Stock, Raised Price Target to $170 | yes | positive |\n| 4 | 2019-05-13 | Goldman Maintains Buy On Nvidia, Maintains $185 Target Ahead Of Co's Earnings 5/16 Post Close As Firm Remains Bullish Long-Term, But Expects 'Gaming to remain weak on channel adjustments while Datacenter likely to be impacted by near term customer pauses' | yes | positive |\n| 5 | 2019-05-13 | Trade War Heats Up As China Retaliates With Raised Tariffs Of Its Own | no |  |\n| 6 | 2019-05-13 | Shares of several technology companies are trading lower amid continued US-China trade concerns. Proposed tariffs between the two nations could raise input costs, while trade tensions could hurt tech companies with China exposure. | no |  |\n| 7 | 2019-05-10 | Shares of several technology companies are trading lower on continued uncertainty surrounding the future of trade relations between the US and China after the Trump Administration increased tariffs on $200 million of Chinese goods from 10% to 25%. | no |  |\n| 8 | 2019-05-10 | Tariff Troubles: Market Retreat Looks To Continue As U.S. Raises Levies On China Goods | no |  |",
+  "advice": {
+   "action": "sell",
+   "horizon": "1w",
+   "confidence": 65,
+   "explanation": "The stock is in a strong downward trend, with returns of -8.25% over 5 days and -15.21% over 20 days. While Goldman Sachs maintains a Buy rating, they explicitly expect gaming to remain weak and datacenter to be impacted by near term customer pauses. Combined with a lowered price target from Stifel Nicolaus and high volatility, the short-term momentum remains negative.",
+   "used_headlines": [
+    2,
+    4
+   ],
+   "news_used": true,
+   "error": null
+  },
+  "trader": "action is sell, not buy → no trade",
+  "judge_claims": 7,
+  "judge_supported": 7,
+  "outcome": {
+   "fwd_1d": 0.0038226484225465374,
+   "fwd_1w": -0.046246322171722865,
+   "chosen": -0.046246322171722865,
+   "verdict": "hit"
+  },
+  "llm_calls": [
+   "relevance",
+   "sentiment",
+   "advisor",
+   "judge"
+  ],
+  "errors": []
+ }
+}

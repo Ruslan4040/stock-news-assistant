@@ -116,6 +116,16 @@ def paired_difference(a: pd.DataFrame, b: pd.DataFrame) -> dict:
     return common.metric_row("A_minus_B.hit_rate_paired", common.bootstrap(common.mean, diff))
 
 
+def same_action_share(limit: int | None) -> float | None:
+    """Share of set-A decisions whose anonymized set-B twin got the same action."""
+    a, b = (load_rows(letter, limit) for letter in "AB")
+    if not len(a) or not len(b):
+        return None
+    actions = b.assign(key=b["id"].str[1:]).set_index("key")["action"]
+    matched = a.assign(key=a["id"].str[1:]).set_index("key")["action"].align(actions, "inner")
+    return round(float((matched[0] == matched[1]).mean()), 4)
+
+
 def set_rows(limit: int | None) -> tuple[list[dict], dict]:
     """Hit rates of A, B, C, the paired A-B difference, and the decision by the spec rule."""
     frames = {letter: directional(load_rows(letter, limit)) for letter in "ABC"}
@@ -130,7 +140,8 @@ def set_rows(limit: int | None) -> tuple[list[dict], dict]:
     scored = all(stats[letter]["n"] for letter in "ABC")
     peeks = scored and low > stats["C"]["ci_high"] and low > stats["B"]["ci_high"]
     rule = "A.ci_low > C.ci_high and A.ci_low > B.ci_high (hit rate)"
-    return rows, {"llm_peeks": bool(peeks), "rule": rule}
+    return rows, {"llm_peeks": bool(peeks), "rule": rule,
+                  "a_b_same_action_share": same_action_share(limit)}
 
 
 def set_d_row() -> tuple[dict, dict]:

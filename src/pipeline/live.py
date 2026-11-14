@@ -2,6 +2,8 @@
 
 Every live advice is appended to data/processed/live/advice.jsonl. These records are set D
 of the look-ahead experiment.
+
+Run: python -m src.pipeline.live     record today's advice for every config ticker
 """
 
 import json
@@ -77,3 +79,17 @@ def live_advice(ticker: str, now: datetime | None = None) -> tuple[LiveAdvice, b
                         relevant_keys=keys, result=result)
     _append(record)
     return record, True
+
+
+def main() -> None:
+    """Record today's live advice for every ticker (set D)."""
+    for ticker in load_config()["tickers"]:
+        record, created = live_advice(ticker)
+        advice = record.result.advice
+        state = "new" if created else "kept"
+        print(f"{ticker}: {state} ({record.reason}) -> {advice.action} {advice.horizon} "
+              f"confidence {advice.confidence}, news_used={advice.news_used}", flush=True)
+
+
+if __name__ == "__main__":
+    main()
