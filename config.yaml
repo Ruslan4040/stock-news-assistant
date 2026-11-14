@@ -127,7 +127,9 @@ simulator:
   trading_days_per_year: 252
 
 evals:
-  sample_n: 300                # decision points per historical set (A, B, C)
+  sample_n: 300                # decision points prepared per set (A, B, C)
+  batch_limit: 200             # decisions per set sent through the LLM (the free API gives about
+                               # 9 answers a minute); null = all prepared decisions
   smoke_limit: 20
   bootstrap_n: 1000
   ci_level: 0.95

@@ -61,5 +61,98 @@
    "count": 0
   }
  ],
- "details": {}
+ "details": {
+  "prepare_report": {
+   "kaggle": {
+    "rows_for_tickers": 24967,
+    "empty_removed": 0,
+    "duplicates_removed": 1088,
+    "duplicate_pct": 4.36,
+    "rows_kept": 23879,
+    "timed_rows": 82,
+    "date_only_rows": 23797
+   },
+   "set_a": {
+    "headlines_naming_company_mean": 4.12,
+    "decisions_without_named_headline": 29,
+    "window_hours_median_by_ticker": {},
+    "decisions": 300,
+    "headlines_total": 3013,
+    "headlines_per_decision_mean": 10.04,
+    "headlines_per_decision_min": 1,
+    "headlines_per_decision_max": 15,
+    "decisions_without_headlines": 0,
+    "per_ticker": {
+     "GOOGL": 38,
+     "NVDA": 38,
+     "TSLA": 38,
+     "JPM": 38,
+     "INTC": 37,
+     "NFLX": 37,
+     "AVGO": 37,
+     "HD": 37
+    }
+   },
+   "set_b": {
+    "window_hours_median_by_ticker": {},
+    "decisions": 300,
+    "headlines_total": 3013,
+    "headlines_per_decision_mean": 10.04,
+    "headlines_per_decision_min": 1,
+    "headlines_per_decision_max": 15,
+    "decisions_without_headlines": 0,
+    "per_ticker": {
+     "X": 300
+    }
+   },
+   "set_c": {
+    "headlines_naming_company_mean": 5.85,
+    "decisions_without_named_headline": 5,
+    "window_hours_median_by_ticker": {
+     "GOOGL": 2.8,
+     "NVDA": 1.4,
+     "TSLA": 4.8,
+     "JPM": 9.1,
+     "INTC": 3.3,
+     "NFLX": 24.0,
+     "AVGO": 6.9,
+     "HD": 51.5
+    },
+    "decisions": 300,
+    "headlines_total": 4465,
+    "headlines_per_decision_mean": 14.88,
+    "headlines_per_decision_min": 5,
+    "headlines_per_decision_max": 15,
+    "decisions_without_headlines": 0,
+    "per_ticker": {
+     "GOOGL": 38,
+     "NVDA": 38,
+     "TSLA": 38,
+     "JPM": 38,
+     "INTC": 37,
+     "NFLX": 37,
+     "AVGO": 37,
+     "HD": 37
+    }
+   },
+   "outcomes_missing": 0,
+   "set_b_leaks": 0,
+   "phrasebank_sample": {
+    "neutral": 244,
+    "positive": 115,
+    "negative": 41
+   },
+   "fresh_label_sheet": "kept existing file"
+  },
+  "finnhub": {
+   "day_files": 427,
+   "items": 18351
+  },
+  "kaggle": {
+   "rows_for_tickers": 24967,
+   "rows_in_set_a_year": 9202
+  },
+  "phrasebank_sentences": 3453,
+  "tickers": 8
+ }
 }

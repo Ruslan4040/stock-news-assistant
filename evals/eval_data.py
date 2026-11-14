@@ -3,14 +3,15 @@
 Run: python -m evals.eval_data
 """
 
+import json
 from datetime import date
 
 import numpy as np
 import pandas as pd
 
 from evals import common
-from src.config import load_config
-from src.data import align, anonymize, kaggle, news, prices, sets
+from src.config import ROOT, load_config
+from src.data import align, anonymize, kaggle, news, phrasebank, prices, sets
 from src.data import calendar as cal
 
 COMPONENT = "data"
@@ -68,6 +69,22 @@ def leak_flags() -> np.ndarray:
     return np.array(flags)
 
 
+def dataset_sizes(cfg: dict) -> dict:
+    """Collect the dataset sizes that the report quotes (from files, never typed)."""
+    finnhub_files = list((ROOT / cfg["paths"]["finnhub_dir"]).glob("*/*.json"))
+    items = sum(len(json.loads(path.read_text(encoding="utf-8"))) for path in finnhub_files)
+    kaggle_rows = kaggle.read_rows(cfg)
+    year = str(cfg["dates"]["set_a_year"])
+    return {
+        "prepare_report": json.loads(sets.processed("prepare_report.json").read_text()),
+        "finnhub": {"day_files": len(finnhub_files), "items": items},
+        "kaggle": {"rows_for_tickers": len(kaggle_rows),
+                   "rows_in_set_a_year": int(kaggle_rows["date"].str.startswith(year).sum())},
+        "phrasebank_sentences": len(phrasebank.load_phrasebank()),
+        "tickers": len(cfg["tickers"]),
+    }
+
+
 def main() -> None:
     """Compute the data-quality metrics and write the results file."""
     common.limit_argument(__doc__)
@@ -88,7 +105,8 @@ def main() -> None:
         for name, flags in rows.items()
     ]
     path = common.write_result(
-        COMPONENT, metrics, "all downloaded prices, raw Kaggle rows of the 8 tickers, sets A/B/C"
+        COMPONENT, metrics, "all downloaded prices, raw Kaggle rows of the 8 tickers, sets A/B/C",
+        details=dataset_sizes(cfg),
     )
     common.write_errors(COMPONENT, worst)
     common.show(path)

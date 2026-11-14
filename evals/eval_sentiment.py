@@ -23,12 +23,17 @@ OPPOSITE = {("positive", "negative"), ("negative", "positive")}
 
 
 def label_groups(frame: pd.DataFrame, company_column: str | None) -> pd.DataFrame:
-    """Run the labeler group by group; rows of a failed call are marked 'error'."""
+    """Run the labeler group by group (in parallel); rows of a failed call are marked 'error'."""
     frame = frame.assign(predicted="error", reason="")
-    for _key, part in frame.groupby("group", sort=False):
+    parts = [part for _key, part in frame.groupby("group", sort=False)]
+
+    def label(part: pd.DataFrame) -> sentiment.SentimentResult:
+        """Label the texts of one group with one LLM call."""
         company = part[company_column].iloc[0] if company_column else None
         headlines = [Headline(id=i + 1, text=text) for i, text in enumerate(part["text"])]
-        result = sentiment.run(company, headlines)
+        return sentiment.run(company, headlines)
+
+    for part, result in zip(parts, common.parallel_map(label, parts), strict=True):
         if not result.error:
             frame.loc[part.index, "predicted"] = [item.label for item in result.items]
             frame.loc[part.index, "reason"] = [item.reason for item in result.items]

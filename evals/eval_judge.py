@@ -8,7 +8,6 @@ Run: python -m evals.eval_judge [--limit N]
 """
 
 import json
-import random
 
 import numpy as np
 import pandas as pd
@@ -25,17 +24,19 @@ SHEET_COLUMNS = ["explanation_id", "claim_no", "claim", "inputs", "explanation",
 
 
 def sample_results(limit: int | None) -> list[PipelineResult]:
-    """Pick explanations evenly from the source sets, in a fixed random order."""
-    cfg = load_config()
-    rng = random.Random(cfg["seed"])
-    per_set = (limit or cfg["evals"]["judge_n"]) // len(SOURCE_SETS)
+    """Pick the first valid explanations of each source set in the fixed run order.
+
+    The run order is random but fixed, so the sample stays the same when more decisions
+    are run later.
+    """
+    per_set = (limit or load_config()["evals"]["judge_n"]) // len(SOURCE_SETS)
     picked = []
     for letter in SOURCE_SETS:
-        valid = [r for r in batch.load_results(letter)
-                 if not batch.incomplete(r) and not r.advice.error]
-        picked += rng.sample(valid, min(per_set, len(valid)))
-    rng.shuffle(picked)
-    return picked
+        stored = {r.decision.id: r for r in batch.load_results(letter)}
+        ordered = [stored[i] for i in batch.run_order(letter) if i in stored]
+        valid = [r for r in ordered if not batch.incomplete(r) and not r.advice.error]
+        picked.append(valid[:per_set])
+    return [result for pair in zip(*picked, strict=False) for result in pair]
 
 
 def judge_one(result: PipelineResult) -> dict:
