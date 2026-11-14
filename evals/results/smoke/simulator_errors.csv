@@ -1,0 +1,9 @@
+set,ticker,entry,exit,reason,return_pct
+A,NFLX,2019-07-12,2019-07-19,horizon,-15.748
+A,AVGO,2019-06-07,2019-06-14,horizon,-3.446
+B,AVGO,2019-06-07,2019-06-14,horizon,-3.446
+C,JPM,2025-12-15,2025-12-22,horizon,0.758
+A,TSLA,2019-11-13,2019-11-20,horizon,1.562
+B,TSLA,2019-11-13,2019-11-20,horizon,1.562
+A,GOOGL,2019-01-10,2019-01-17,horizon,1.677
+B,GOOGL,2019-01-10,2019-01-17,horizon,1.677

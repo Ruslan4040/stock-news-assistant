@@ -1,0 +1,190 @@
+{
+ "component": "sentiment",
+ "run_date": "2026-11-14",
+ "model": "google/gemma-4-31b-it:free",
+ "prompt_version": "sentiment_v1",
+ "eval_data": "data/processed/phrasebank_sample.csv + evals/labels/fresh_headlines.csv",
+ "limit": 20,
+ "metrics": [
+  {
+   "name": "phrasebank.accuracy",
+   "value": 1.0,
+   "ci_low": 1.0,
+   "ci_high": 1.0,
+   "n": 20,
+   "baselines": {
+    "finbert": 0.95,
+    "always_neutral": 0.55
+   }
+  },
+  {
+   "name": "phrasebank.macro_f1",
+   "value": 1.0,
+   "ci_low": 0.6666666666666666,
+   "ci_high": 1.0,
+   "n": 20,
+   "baselines": {
+    "finbert": 0.9645,
+    "always_neutral": 0.2366
+   }
+  },
+  {
+   "name": "fresh.accuracy",
+   "value": 0.9,
+   "ci_low": 0.75,
+   "ci_high": 1.0,
+   "n": 20,
+   "baselines": {
+    "finbert": 0.45,
+    "always_neutral": 0.9
+   }
+  },
+  {
+   "name": "fresh.macro_f1",
+   "value": 0.5359477124183006,
+   "ci_low": 0.30630630630630634,
+   "ci_high": 0.6666666666666666,
+   "n": 20,
+   "baselines": {
+    "finbert": 0.2069,
+    "always_neutral": 0.3158
+   }
+  },
+  {
+   "name": "fresh_relevant.accuracy",
+   "value": 1.0,
+   "ci_low": 1.0,
+   "ci_high": 1.0,
+   "n": 2,
+   "baselines": {
+    "finbert": 0.0,
+    "always_neutral": 0.0
+   }
+  },
+  {
+   "name": "fresh_relevant.macro_f1",
+   "value": 0.3333333333333333,
+   "ci_low": 0.3333333333333333,
+   "ci_high": 0.3333333333333333,
+   "n": 2,
+   "baselines": {
+    "finbert": 0.0,
+    "always_neutral": 0.0
+   }
+  }
+ ],
+ "details": {
+  "phrasebank": {
+   "confusion_rows_truth_cols_predicted": {
+    "labels": [
+     "negative",
+     "neutral",
+     "positive",
+     "error"
+    ],
+    "matrix": [
+     [
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      11,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      8,
+      0
+     ]
+    ]
+   },
+   "class_balance": {
+    "neutral": 11,
+    "positive": 8,
+    "negative": 1
+   },
+   "llm_errors": 0
+  },
+  "fresh": {
+   "confusion_rows_truth_cols_predicted": {
+    "labels": [
+     "negative",
+     "neutral",
+     "positive",
+     "error"
+    ],
+    "matrix": [
+     [
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      16,
+      2,
+      0
+     ],
+     [
+      0,
+      0,
+      2,
+      0
+     ]
+    ]
+   },
+   "class_balance": {
+    "neutral": 18,
+    "positive": 2
+   },
+   "llm_errors": 0
+  },
+  "fresh_relevant": {
+   "confusion_rows_truth_cols_predicted": {
+    "labels": [
+     "negative",
+     "neutral",
+     "positive",
+     "error"
+    ],
+    "matrix": [
+     [
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      2,
+      0
+     ]
+    ]
+   },
+   "class_balance": {
+    "positive": 2
+   },
+   "llm_errors": 0
+  },
+  "sentiment_gap_accuracy": {
+   "llm": 0.09999999999999998,
+   "finbert": 0.49999999999999994
+  },
+  "labeled_by": {
+   "assistant_draft": 20
+  }
+ }
+}

@@ -1,101 +1,101 @@
 id,ticker,company,published,source,headline,relevant,sentiment,labeled_by
-F001,GOOGL,Alphabet Inc.,2026-03-09T18:42:49Z,Yahoo,Apple Postpones Smart Home Display Launch as It Waits for New AI and Siri,,,
-F002,GOOGL,Alphabet Inc.,2026-08-19T11:00:23Z,Benzinga,A Congress Member Bought Up To $60K In Amazon.com Stock: Here's What You Need To Know,,,
-F003,GOOGL,Alphabet Inc.,2026-02-13T19:25:03Z,Yahoo,Is a 100-Year Bond Worth Buying?,,,
-F004,GOOGL,Alphabet Inc.,2025-11-25T18:19:00Z,Yahoo,"Google, the Sleeping Giant in Global AI Race, Now ‘Fully Awake’",,,
-F005,GOOGL,Alphabet Inc.,2025-12-03T17:01:11Z,Yahoo,"Former Salesforce Co-CEO Bret Taylor's Startup Sierra Hits $100M ARR, Powers 95% Of Black Friday Shoppers",,,
-F006,GOOGL,Alphabet Inc.,2026-07-02T19:40:10Z,Yahoo,BNP Paribas Sends Fresh Message on CoreWeave and Nebius Stocks,,,
-F007,GOOGL,Alphabet Inc.,2026-10-21T18:55:25Z,Yahoo,Anthropic Has Over $600 Billion in Compute Contracts — And It's Not Enough,,,
-F008,GOOGL,Alphabet Inc.,2026-11-03T19:14:20Z,Yahoo,Would you let AI chatbots smear your competitors?,,,
-F009,GOOGL,Alphabet Inc.,2026-07-27T19:12:43Z,Yahoo,Alphabet’s Enterprise Surprise is A Great Reason to Keep Buying,,,
-F010,GOOGL,Alphabet Inc.,2026-08-05T19:14:31Z,Yahoo,SK Hynix (KOSE:A000660) Helps Set An Open Standard For AI Flash Memory,,,
-F011,GOOGL,Alphabet Inc.,2026-09-03T19:42:40Z,Yahoo,"Advertising Leader Magnite Touches New Buy Point, But Reverses Lower",,,
-F012,GOOGL,Alphabet Inc.,2026-07-27T19:05:43Z,Yahoo,ADBE Showered Owners With Cash. The Stock Still Lagged The Market,,,
-F013,GOOGL,Alphabet Inc.,2026-08-13T19:46:00Z,Yahoo,Amazon Is the Only $3 Trillion Company That Has Never Paid a Dividend,,,
-F014,NVDA,NVIDIA Corporation,2026-07-17T19:16:06Z,Yahoo,"Joby, Archer, and EHang Are Down 40% to 60% in 2026. Are Air Taxi Stocks Damaged Beyond Repair?",,,
-F015,NVDA,NVIDIA Corporation,2026-06-12T19:40:18Z,Yahoo,Market Chatter: SpaceX Rents Out Data Center Capacity to Anthropic After Encountering Technical Issues,,,
-F016,NVDA,NVIDIA Corporation,2026-06-29T19:38:58Z,Yahoo,Why Cerebras Stock Is Skyrocketing Today,,,
-F017,NVDA,NVIDIA Corporation,2026-04-15T19:57:00Z,Yahoo,5 Stocks to Buy if AI Investing Comes Back Into Style,,,
-F018,NVDA,NVIDIA Corporation,2026-04-02T19:05:00Z,Yahoo,Is Oklo the Smartest Investment You Can Make Today?,,,
-F019,NVDA,NVIDIA Corporation,2025-12-29T20:00:39Z,Yahoo,Why Tesla (TSLA) Shares Are Trading Lower Today,,,
-F020,NVDA,NVIDIA Corporation,2026-03-04T20:32:29Z,Yahoo,The Nasdaq Leads a Wednesday Comeback Rally,,,
-F021,NVDA,NVIDIA Corporation,2026-04-02T18:58:00Z,Yahoo,Kalshi Now Places the Odds of a Recession in 2026 at 28%. 2 ETFs to Buy to Hedge Your Downside.,,,
-F022,NVDA,NVIDIA Corporation,2025-12-10T18:33:29Z,Yahoo,"Trump says Nvidia can sell H200 chips to China, but nothing is guaranteed",,,
-F023,NVDA,NVIDIA Corporation,2026-04-01T18:49:20Z,Yahoo,NVIDIA Corporation (NVDA): Billionaire Ray Dalio Discloses Major Buying Activity,,,
-F024,NVDA,NVIDIA Corporation,2026-02-13T19:10:00Z,Yahoo,2 AI Stocks That Could Go Parabolic,,,
-F025,NVDA,NVIDIA Corporation,2026-08-12T18:22:38Z,SeekingAlpha,GE Vernova: I Can't Stop Buying This AI Power Stock,,,
-F026,NVDA,NVIDIA Corporation,2026-06-18T19:02:48Z,Yahoo,The Old Guard of Sportsbooks Is Being Schooled By Prediction Markets,,,
-F027,TSLA,"Tesla, Inc.",2026-08-07T14:16:44Z,Yahoo,Tesla and SpaceX Are Building a $55 Billion Chip Factory in Texas,,,
-F028,TSLA,"Tesla, Inc.",2026-10-08T16:17:28Z,Yahoo,"Securitize's tokenized US stock trading is here, bringing Nvidia, Tesla, & Apple to Solana",,,
-F029,TSLA,"Tesla, Inc.",2026-01-28T17:48:48Z,Yahoo,Here’s What Wall Street Is Looking For,,,
-F030,TSLA,"Tesla, Inc.",2026-02-17T17:26:39Z,DowJones,"Musk Says This About Tesla's Cybercab, Optimus, Makes Claim About Epstein And Tesla Stock",,,
-F031,TSLA,"Tesla, Inc.",2026-04-16T18:52:52Z,Yahoo,Tesla (TSLA): The Best EV Stock to Buy For Long Term Investment,,,
-F032,TSLA,"Tesla, Inc.",2026-10-28T18:45:17Z,Yahoo,Elon Musk once backed Buffett’s 5-minute fix for national debt: ‘This is the way’,,,
-F033,TSLA,"Tesla, Inc.",2026-10-20T18:18:10Z,Yahoo,Ed Yardeni spots a major shakeup in the S&P 500,,,
-F034,TSLA,"Tesla, Inc.",2026-03-05T19:03:00Z,Yahoo,Tesla just made a move no other AI company has tried,,,
-F035,TSLA,"Tesla, Inc.",2026-03-10T15:31:06Z,Yahoo,"Elon Musk Fires Back At AOC After 'Billionaire Conman' Remark, Jokes He's A 'Trillionaire'",,,
-F036,TSLA,"Tesla, Inc.",2026-04-16T17:30:01Z,Yahoo,Tesla Cybertruck Demand Gets Boost From Inside,,,
-F037,TSLA,"Tesla, Inc.",2026-10-01T13:28:36Z,Yahoo,Tesla Bears Retreat as Sell Ratings Hit 3-Year Low: 'Don't Bet Against Musk',,,
-F038,TSLA,"Tesla, Inc.",2026-03-05T18:50:41Z,Yahoo,Roundhill’s 50% Yield Innovation-100 ETF Is Waiting To Step on A Landmine,,,
-F039,TSLA,"Tesla, Inc.",2026-03-06T16:31:21Z,Benzinga,BYD Needs Just 9 Minutes To Challenge Tesla's Last Great Advantage,,,
-F040,JPM,JPMorgan Chase & Co.,2026-09-28T15:02:18Z,Yahoo,Thunes CEO Peter De Caluwe Discusses PA,,,
-F041,JPM,JPMorgan Chase & Co.,2026-10-23T16:33:45Z,Yahoo,XRP News: Ripple Joined DTCC’s Tokenization Push This Week. Can It Pull XRP Out of Its October Slide?,,,
-F042,JPM,JPMorgan Chase & Co.,2026-09-07T15:35:05Z,Benzinga,Dollar-Yen Falls To Seven-Month Lows: Is the Carry Trade Now Broken?,,,
-F043,JPM,JPMorgan Chase & Co.,2026-10-27T10:12:20Z,Yahoo,ORIC Pharmaceuticals (ORIC) Stock Sees Modest Fair Value Lift On Trial Catalyst Optimism,,,
-F044,JPM,JPMorgan Chase & Co.,2026-05-04T11:28:11Z,Yahoo,Blackstone Data Center REIT Seeks to Raise $1.75 Billion in IPO,,,
-F045,JPM,JPMorgan Chase & Co.,2026-10-20T17:23:34Z,Yahoo,JPMorgan Flips Bullish on Bitcoin Over the Next Ten Years,,,
-F046,JPM,JPMorgan Chase & Co.,2026-09-10T14:38:00Z,Yahoo,Meta’s Muse Hits Top 3 in App Store. Why Wall Street Is Split on the Stock.,,,
-F047,JPM,JPMorgan Chase & Co.,2026-09-08T08:28:18Z,Yahoo,High Mortgage Rates Keep Multifamily Demand Elevated,,,
-F048,JPM,JPMorgan Chase & Co.,2026-04-22T14:40:00Z,Yahoo,"Big Bank Earnings Gave Financials a Lift, But Wall Street Is Still Cautious",,,
-F049,JPM,JPMorgan Chase & Co.,2026-04-22T18:12:13Z,Yahoo,Array Technologies (ARRY) Price Target Cut by $2,,,
-F050,JPM,JPMorgan Chase & Co.,2026-05-29T15:17:03Z,Benzinga,Jamie Dimon Blasts Brian Armstrong Over CLARITY Act: 'You Are Full Of...',,,
-F051,JPM,JPMorgan Chase & Co.,2026-02-26T19:03:00Z,Yahoo,JPMorgan drops blunt take on software stocks AI threat,,,
-F052,JPM,JPMorgan Chase & Co.,2026-08-31T13:00:00Z,Yahoo,BMO and Northern Super League Renew Multi-Year Partnership to Advance the Future of Women's Soccer in Canada,,,
-F053,INTC,Intel Corporation,2026-08-20T06:00:15Z,SeekingAlpha,Intel: Why I Am Not Buying The Dip,,,
-F054,INTC,Intel Corporation,2026-04-16T19:23:00Z,Yahoo,"Down 90% Over the Past 5 Years (but Up More Than 30% in April Alone), Is Snap Stock Finally a Buy?",,,
-F055,INTC,Intel Corporation,2026-07-07T19:05:00Z,ChartMill,Stay informed with the top movers within the S&P500 index on Tuesday.,,,
-F056,INTC,Intel Corporation,2026-07-07T19:19:22Z,Yahoo,Memory chip stocks fall into a bull market amid latest tech sell-off,,,
-F057,INTC,Intel Corporation,2026-09-08T18:16:42Z,Yahoo,Update: Market Chatter: Intel May Raise PC CPU Prices Another 10% in October; Shares Rise in Afternoon Trading,,,
-F058,INTC,Intel Corporation,2026-10-20T17:45:38Z,SeekingAlpha,Silicom: Attractively Poised Ahead Of Q3 Earnings,,,
-F059,INTC,Intel Corporation,2026-01-07T18:04:45Z,Yahoo,Intel Confirms New Gaming Chip Push,,,
-F060,INTC,Intel Corporation,2025-11-26T19:01:15Z,Yahoo,SoftBank Just Dropped $6.5 Billion on This AI Chipmaker--Here's Why It Could Matter Big,,,
-F061,INTC,Intel Corporation,2026-09-01T15:47:00Z,Yahoo,Should NVIDIA Stock Be in Your Portfolio Post Solid Q2 Earnings?,,,
-F062,INTC,Intel Corporation,2026-01-15T18:51:20Z,Yahoo,Intel Stock Just Got a New Street-High Price Target. Should You Buy INTC Here?,,,
-F063,INTC,Intel Corporation,2026-01-07T18:31:10Z,Yahoo,Lip-Bu Tan Says They 'Over-Delivered' On 18A Timeline As Intel Shows Off Next Gen Panther Lake AI Laptop Chips At CES 2026,,,
-F064,INTC,Intel Corporation,2026-07-17T15:33:06Z,Yahoo,Can You Stomach A Real Micron Stock Crash?,,,
-F065,NFLX,"Netflix, Inc.",2026-09-10T18:06:44Z,Yahoo,Is The AI Capex Surge A Threat To Amazon Stock?,,,
-F066,NFLX,"Netflix, Inc.",2026-02-24T16:36:00Z,Yahoo,"Netflix Declines 8% Post Q4 Earnings: Buy, Sell or Hold the Stock?",,,
-F067,NFLX,"Netflix, Inc.",2026-09-03T13:30:03Z,Yahoo,Is It Worth Investing in Netflix (NFLX) Based on Wall Street's Bullish Views?,,,
-F068,NFLX,"Netflix, Inc.",2026-03-03T19:45:19Z,Benzinga,UFC 'Will Not Profit' From White House Fight On Trump's Birthday: Will Shareholders Approve Of $30 Million Loss?,,,
-F069,NFLX,"Netflix, Inc.",2026-08-18T09:02:51Z,ChartMill,"Paramount, the Ticking Fee, and the Balance Sheet That Can't Take It",,,
-F070,NFLX,"Netflix, Inc.",2026-06-02T13:59:11Z,Yahoo,"Netflix Nearing 52-Week Low: Buy, Sell or Hold?",,,
-F071,NFLX,"Netflix, Inc.",2026-10-14T17:11:14Z,Yahoo,Netflix (NFLX) Plans To Cut About 6% Of Its Workforce,,,
-F072,NFLX,"Netflix, Inc.",2026-07-10T14:12:53Z,Yahoo,Netflix Weighs New Strategy as Report Highlights Subscriber Engagement Concerns (NFLX),,,
-F073,NFLX,"Netflix, Inc.",2026-11-03T20:28:17Z,Yahoo,Byron Donalds Could Be Next Florida Governor: Here Are the Stocks He's Been Buying in 2026,,,
-F074,NFLX,"Netflix, Inc.",2026-03-19T09:06:51Z,Yahoo,Netflix Balances EU Rule Talks With BTS Event And Franchise Wins,,,
-F075,NFLX,"Netflix, Inc.",2025-11-23T14:31:00Z,SeekingAlpha,Alger AI Enablers & Adopters ETF Q3 2025 Portfolio Update,,,
-F076,NFLX,"Netflix, Inc.",2026-05-31T16:04:01Z,Yahoo,Netflix Turns Wonka And Young MacDonald Into New Franchise Revenue Stream,,,
-F077,AVGO,Broadcom Inc.,2026-01-11T21:35:00Z,Yahoo,Should You Forget Nvidia and Buy These 2 Artificial Intelligence (AI) Stocks Right Now?,,,
-F078,AVGO,Broadcom Inc.,2026-09-08T17:18:03Z,Yahoo,Jim Cramer picks Nvidia and Broadcom as OpenAI GPT-6 Astra winners,,,
-F079,AVGO,Broadcom Inc.,2026-06-17T15:31:00Z,Yahoo,AVGO's Gross Margin Contracts Y/Y: Is Growth Getting Harder?,,,
-F080,AVGO,Broadcom Inc.,2026-09-24T14:26:03Z,Benzinga,"EXCLUSIVE: Nvidia Keeps AI Profits, TSMC May Want a Bigger Cut",,,
-F081,AVGO,Broadcom Inc.,2026-06-25T18:09:31Z,Benzinga,"Nancy Pelosi Has Added These 9 Stocks To Her Portfolio Since 2025, Including Three Magnificent Seven Names",,,
-F082,AVGO,Broadcom Inc.,2026-08-25T05:58:39Z,Benzinga,Exploring The Competitive Space: Broadcom Versus Industry Peers In Semiconductors &amp; Semiconductor Equipment,,,
-F083,AVGO,Broadcom Inc.,2025-12-23T14:52:43Z,Yahoo,Where Will Broadcom (AVGO) Stock Be in 5 Years?,,,
-F084,AVGO,Broadcom Inc.,2026-02-09T15:37:47Z,Benzinga,Shares of companies in the broader tech sector are trading higher amid overall market strength.,,,
-F085,AVGO,Broadcom Inc.,2025-12-15T18:29:14Z,Yahoo,This Bearish Options Trade Could Pay Off If AI Jitters Hit Nvidia Stock,,,
-F086,AVGO,Broadcom Inc.,2026-09-03T17:23:00Z,Yahoo,Broadcom's AI outlook draws mixed market reaction,,,
-F087,AVGO,Broadcom Inc.,2026-06-17T15:27:09Z,Yahoo,Is This The Best Time to Buy Broadcom (AVGO)?,,,
-F088,AVGO,Broadcom Inc.,2026-03-20T12:05:25Z,Yahoo,Broadcom Targets Quantum Safe Infrastructure With Silicon Level Encryption Rollout,,,
-F089,HD,"The Home Depot, Inc.",2026-10-20T12:00:05Z,Yahoo,"Here is What to Know Beyond Why The Home Depot, Inc. (HD) is a Trending Stock",,,
-F090,HD,"The Home Depot, Inc.",2026-06-28T10:33:34Z,Yahoo,"The Home Depot, Inc. (HD) Is A Top Richard Chilton Stock Pick",,,
-F091,HD,"The Home Depot, Inc.",2025-12-16T17:30:00Z,Yahoo,Midwest Based Hardware Retailer Files For Bankruptcy,,,
-F092,HD,"The Home Depot, Inc.",2026-05-20T15:10:48Z,Yahoo,"Lowe's, Home Depot Stock Plumb New Lows Despite Earnings Beats",,,
-F093,HD,"The Home Depot, Inc.",2026-09-22T14:09:24Z,Yahoo,"His Bet On Home Depot Made Ken Langone A Billionaire. Now He Sees Eli Lilly Stock Hitting $2,000",,,
-F094,HD,"The Home Depot, Inc.",2025-11-24T14:00:04Z,Yahoo,"The Home Depot, Inc. (HD) Is a Trending Stock: Facts to Know Before Betting on It",,,
-F095,HD,"The Home Depot, Inc.",2026-10-27T03:45:00Z,SeekingAlpha,Parnassus Value Equity Fund Q3 2026 Portfolio Review,,,
-F096,HD,"The Home Depot, Inc.",2026-06-14T14:13:04Z,Yahoo,Home Depot’s Pro Pivot Reshapes Growth Potential And Earnings Mix,,,
-F097,HD,"The Home Depot, Inc.",2025-12-02T14:42:00Z,Yahoo,"Zacks Investment Ideas feature highlights: JP Morgan, Home Depot, Lennar, NextEra Energy and American Electric Power",,,
-F098,HD,"The Home Depot, Inc.",2026-03-27T11:01:07Z,Benzinga,"Options Exercise Update At Home Depot: Teresa Wynn Roseborough Engages, Resulting In $0",,,
-F099,HD,"The Home Depot, Inc.",2026-02-17T16:53:00Z,Yahoo,Home Depot's Capital Discipline Drives Long-Term Shareholder Value,,,
-F100,HD,"The Home Depot, Inc.",2026-02-25T14:05:05Z,Yahoo,Home Depot sees mixed Q4 results amid steady housing demand,,,
+F001,GOOGL,Alphabet Inc.,2026-03-09T18:42:49Z,Yahoo,Apple Postpones Smart Home Display Launch as It Waits for New AI and Siri,n,neutral,assistant_draft
+F002,GOOGL,Alphabet Inc.,2026-08-19T11:00:23Z,Benzinga,A Congress Member Bought Up To $60K In Amazon.com Stock: Here's What You Need To Know,n,neutral,assistant_draft
+F003,GOOGL,Alphabet Inc.,2026-02-13T19:25:03Z,Yahoo,Is a 100-Year Bond Worth Buying?,n,neutral,assistant_draft
+F004,GOOGL,Alphabet Inc.,2025-11-25T18:19:00Z,Yahoo,"Google, the Sleeping Giant in Global AI Race, Now ‘Fully Awake’",y,positive,assistant_draft
+F005,GOOGL,Alphabet Inc.,2025-12-03T17:01:11Z,Yahoo,"Former Salesforce Co-CEO Bret Taylor's Startup Sierra Hits $100M ARR, Powers 95% Of Black Friday Shoppers",n,neutral,assistant_draft
+F006,GOOGL,Alphabet Inc.,2026-07-02T19:40:10Z,Yahoo,BNP Paribas Sends Fresh Message on CoreWeave and Nebius Stocks,n,neutral,assistant_draft
+F007,GOOGL,Alphabet Inc.,2026-10-21T18:55:25Z,Yahoo,Anthropic Has Over $600 Billion in Compute Contracts — And It's Not Enough,n,neutral,assistant_draft
+F008,GOOGL,Alphabet Inc.,2026-11-03T19:14:20Z,Yahoo,Would you let AI chatbots smear your competitors?,n,neutral,assistant_draft
+F009,GOOGL,Alphabet Inc.,2026-07-27T19:12:43Z,Yahoo,Alphabet’s Enterprise Surprise is A Great Reason to Keep Buying,y,positive,assistant_draft
+F010,GOOGL,Alphabet Inc.,2026-08-05T19:14:31Z,Yahoo,SK Hynix (KOSE:A000660) Helps Set An Open Standard For AI Flash Memory,n,neutral,assistant_draft
+F011,GOOGL,Alphabet Inc.,2026-09-03T19:42:40Z,Yahoo,"Advertising Leader Magnite Touches New Buy Point, But Reverses Lower",n,neutral,assistant_draft
+F012,GOOGL,Alphabet Inc.,2026-07-27T19:05:43Z,Yahoo,ADBE Showered Owners With Cash. The Stock Still Lagged The Market,n,neutral,assistant_draft
+F013,GOOGL,Alphabet Inc.,2026-08-13T19:46:00Z,Yahoo,Amazon Is the Only $3 Trillion Company That Has Never Paid a Dividend,n,neutral,assistant_draft
+F014,NVDA,NVIDIA Corporation,2026-07-17T19:16:06Z,Yahoo,"Joby, Archer, and EHang Are Down 40% to 60% in 2026. Are Air Taxi Stocks Damaged Beyond Repair?",n,neutral,assistant_draft
+F015,NVDA,NVIDIA Corporation,2026-06-12T19:40:18Z,Yahoo,Market Chatter: SpaceX Rents Out Data Center Capacity to Anthropic After Encountering Technical Issues,n,neutral,assistant_draft
+F016,NVDA,NVIDIA Corporation,2026-06-29T19:38:58Z,Yahoo,Why Cerebras Stock Is Skyrocketing Today,n,neutral,assistant_draft
+F017,NVDA,NVIDIA Corporation,2026-04-15T19:57:00Z,Yahoo,5 Stocks to Buy if AI Investing Comes Back Into Style,n,neutral,assistant_draft
+F018,NVDA,NVIDIA Corporation,2026-04-02T19:05:00Z,Yahoo,Is Oklo the Smartest Investment You Can Make Today?,n,neutral,assistant_draft
+F019,NVDA,NVIDIA Corporation,2025-12-29T20:00:39Z,Yahoo,Why Tesla (TSLA) Shares Are Trading Lower Today,n,neutral,assistant_draft
+F020,NVDA,NVIDIA Corporation,2026-03-04T20:32:29Z,Yahoo,The Nasdaq Leads a Wednesday Comeback Rally,n,neutral,assistant_draft
+F021,NVDA,NVIDIA Corporation,2026-04-02T18:58:00Z,Yahoo,Kalshi Now Places the Odds of a Recession in 2026 at 28%. 2 ETFs to Buy to Hedge Your Downside.,n,neutral,assistant_draft
+F022,NVDA,NVIDIA Corporation,2025-12-10T18:33:29Z,Yahoo,"Trump says Nvidia can sell H200 chips to China, but nothing is guaranteed",y,positive,assistant_draft
+F023,NVDA,NVIDIA Corporation,2026-04-01T18:49:20Z,Yahoo,NVIDIA Corporation (NVDA): Billionaire Ray Dalio Discloses Major Buying Activity,y,positive,assistant_draft
+F024,NVDA,NVIDIA Corporation,2026-02-13T19:10:00Z,Yahoo,2 AI Stocks That Could Go Parabolic,n,neutral,assistant_draft
+F025,NVDA,NVIDIA Corporation,2026-08-12T18:22:38Z,SeekingAlpha,GE Vernova: I Can't Stop Buying This AI Power Stock,n,neutral,assistant_draft
+F026,NVDA,NVIDIA Corporation,2026-06-18T19:02:48Z,Yahoo,The Old Guard of Sportsbooks Is Being Schooled By Prediction Markets,n,neutral,assistant_draft
+F027,TSLA,"Tesla, Inc.",2026-08-07T14:16:44Z,Yahoo,Tesla and SpaceX Are Building a $55 Billion Chip Factory in Texas,y,positive,assistant_draft
+F028,TSLA,"Tesla, Inc.",2026-10-08T16:17:28Z,Yahoo,"Securitize's tokenized US stock trading is here, bringing Nvidia, Tesla, & Apple to Solana",n,neutral,assistant_draft
+F029,TSLA,"Tesla, Inc.",2026-01-28T17:48:48Z,Yahoo,Here’s What Wall Street Is Looking For,n,neutral,assistant_draft
+F030,TSLA,"Tesla, Inc.",2026-02-17T17:26:39Z,DowJones,"Musk Says This About Tesla's Cybercab, Optimus, Makes Claim About Epstein And Tesla Stock",y,neutral,assistant_draft
+F031,TSLA,"Tesla, Inc.",2026-04-16T18:52:52Z,Yahoo,Tesla (TSLA): The Best EV Stock to Buy For Long Term Investment,y,positive,assistant_draft
+F032,TSLA,"Tesla, Inc.",2026-10-28T18:45:17Z,Yahoo,Elon Musk once backed Buffett’s 5-minute fix for national debt: ‘This is the way’,n,neutral,assistant_draft
+F033,TSLA,"Tesla, Inc.",2026-10-20T18:18:10Z,Yahoo,Ed Yardeni spots a major shakeup in the S&P 500,n,neutral,assistant_draft
+F034,TSLA,"Tesla, Inc.",2026-03-05T19:03:00Z,Yahoo,Tesla just made a move no other AI company has tried,y,neutral,assistant_draft
+F035,TSLA,"Tesla, Inc.",2026-03-10T15:31:06Z,Yahoo,"Elon Musk Fires Back At AOC After 'Billionaire Conman' Remark, Jokes He's A 'Trillionaire'",n,neutral,assistant_draft
+F036,TSLA,"Tesla, Inc.",2026-04-16T17:30:01Z,Yahoo,Tesla Cybertruck Demand Gets Boost From Inside,y,positive,assistant_draft
+F037,TSLA,"Tesla, Inc.",2026-10-01T13:28:36Z,Yahoo,Tesla Bears Retreat as Sell Ratings Hit 3-Year Low: 'Don't Bet Against Musk',y,positive,assistant_draft
+F038,TSLA,"Tesla, Inc.",2026-03-05T18:50:41Z,Yahoo,Roundhill’s 50% Yield Innovation-100 ETF Is Waiting To Step on A Landmine,n,neutral,assistant_draft
+F039,TSLA,"Tesla, Inc.",2026-03-06T16:31:21Z,Benzinga,BYD Needs Just 9 Minutes To Challenge Tesla's Last Great Advantage,y,negative,assistant_draft
+F040,JPM,JPMorgan Chase & Co.,2026-09-28T15:02:18Z,Yahoo,Thunes CEO Peter De Caluwe Discusses PA,n,neutral,assistant_draft
+F041,JPM,JPMorgan Chase & Co.,2026-10-23T16:33:45Z,Yahoo,XRP News: Ripple Joined DTCC’s Tokenization Push This Week. Can It Pull XRP Out of Its October Slide?,n,neutral,assistant_draft
+F042,JPM,JPMorgan Chase & Co.,2026-09-07T15:35:05Z,Benzinga,Dollar-Yen Falls To Seven-Month Lows: Is the Carry Trade Now Broken?,n,neutral,assistant_draft
+F043,JPM,JPMorgan Chase & Co.,2026-10-27T10:12:20Z,Yahoo,ORIC Pharmaceuticals (ORIC) Stock Sees Modest Fair Value Lift On Trial Catalyst Optimism,n,neutral,assistant_draft
+F044,JPM,JPMorgan Chase & Co.,2026-05-04T11:28:11Z,Yahoo,Blackstone Data Center REIT Seeks to Raise $1.75 Billion in IPO,n,neutral,assistant_draft
+F045,JPM,JPMorgan Chase & Co.,2026-10-20T17:23:34Z,Yahoo,JPMorgan Flips Bullish on Bitcoin Over the Next Ten Years,n,neutral,assistant_draft
+F046,JPM,JPMorgan Chase & Co.,2026-09-10T14:38:00Z,Yahoo,Meta’s Muse Hits Top 3 in App Store. Why Wall Street Is Split on the Stock.,n,neutral,assistant_draft
+F047,JPM,JPMorgan Chase & Co.,2026-09-08T08:28:18Z,Yahoo,High Mortgage Rates Keep Multifamily Demand Elevated,n,neutral,assistant_draft
+F048,JPM,JPMorgan Chase & Co.,2026-04-22T14:40:00Z,Yahoo,"Big Bank Earnings Gave Financials a Lift, But Wall Street Is Still Cautious",n,neutral,assistant_draft
+F049,JPM,JPMorgan Chase & Co.,2026-04-22T18:12:13Z,Yahoo,Array Technologies (ARRY) Price Target Cut by $2,n,neutral,assistant_draft
+F050,JPM,JPMorgan Chase & Co.,2026-05-29T15:17:03Z,Benzinga,Jamie Dimon Blasts Brian Armstrong Over CLARITY Act: 'You Are Full Of...',y,neutral,assistant_draft
+F051,JPM,JPMorgan Chase & Co.,2026-02-26T19:03:00Z,Yahoo,JPMorgan drops blunt take on software stocks AI threat,n,neutral,assistant_draft
+F052,JPM,JPMorgan Chase & Co.,2026-08-31T13:00:00Z,Yahoo,BMO and Northern Super League Renew Multi-Year Partnership to Advance the Future of Women's Soccer in Canada,n,neutral,assistant_draft
+F053,INTC,Intel Corporation,2026-08-20T06:00:15Z,SeekingAlpha,Intel: Why I Am Not Buying The Dip,y,negative,assistant_draft
+F054,INTC,Intel Corporation,2026-04-16T19:23:00Z,Yahoo,"Down 90% Over the Past 5 Years (but Up More Than 30% in April Alone), Is Snap Stock Finally a Buy?",n,neutral,assistant_draft
+F055,INTC,Intel Corporation,2026-07-07T19:05:00Z,ChartMill,Stay informed with the top movers within the S&P500 index on Tuesday.,n,neutral,assistant_draft
+F056,INTC,Intel Corporation,2026-07-07T19:19:22Z,Yahoo,Memory chip stocks fall into a bull market amid latest tech sell-off,n,neutral,assistant_draft
+F057,INTC,Intel Corporation,2026-09-08T18:16:42Z,Yahoo,Update: Market Chatter: Intel May Raise PC CPU Prices Another 10% in October; Shares Rise in Afternoon Trading,y,positive,assistant_draft
+F058,INTC,Intel Corporation,2026-10-20T17:45:38Z,SeekingAlpha,Silicom: Attractively Poised Ahead Of Q3 Earnings,n,neutral,assistant_draft
+F059,INTC,Intel Corporation,2026-01-07T18:04:45Z,Yahoo,Intel Confirms New Gaming Chip Push,y,positive,assistant_draft
+F060,INTC,Intel Corporation,2025-11-26T19:01:15Z,Yahoo,SoftBank Just Dropped $6.5 Billion on This AI Chipmaker--Here's Why It Could Matter Big,n,neutral,assistant_draft
+F061,INTC,Intel Corporation,2026-09-01T15:47:00Z,Yahoo,Should NVIDIA Stock Be in Your Portfolio Post Solid Q2 Earnings?,n,neutral,assistant_draft
+F062,INTC,Intel Corporation,2026-01-15T18:51:20Z,Yahoo,Intel Stock Just Got a New Street-High Price Target. Should You Buy INTC Here?,y,positive,assistant_draft
+F063,INTC,Intel Corporation,2026-01-07T18:31:10Z,Yahoo,Lip-Bu Tan Says They 'Over-Delivered' On 18A Timeline As Intel Shows Off Next Gen Panther Lake AI Laptop Chips At CES 2026,y,positive,assistant_draft
+F064,INTC,Intel Corporation,2026-07-17T15:33:06Z,Yahoo,Can You Stomach A Real Micron Stock Crash?,n,neutral,assistant_draft
+F065,NFLX,"Netflix, Inc.",2026-09-10T18:06:44Z,Yahoo,Is The AI Capex Surge A Threat To Amazon Stock?,n,neutral,assistant_draft
+F066,NFLX,"Netflix, Inc.",2026-02-24T16:36:00Z,Yahoo,"Netflix Declines 8% Post Q4 Earnings: Buy, Sell or Hold the Stock?",y,negative,assistant_draft
+F067,NFLX,"Netflix, Inc.",2026-09-03T13:30:03Z,Yahoo,Is It Worth Investing in Netflix (NFLX) Based on Wall Street's Bullish Views?,y,positive,assistant_draft
+F068,NFLX,"Netflix, Inc.",2026-03-03T19:45:19Z,Benzinga,UFC 'Will Not Profit' From White House Fight On Trump's Birthday: Will Shareholders Approve Of $30 Million Loss?,n,neutral,assistant_draft
+F069,NFLX,"Netflix, Inc.",2026-08-18T09:02:51Z,ChartMill,"Paramount, the Ticking Fee, and the Balance Sheet That Can't Take It",n,neutral,assistant_draft
+F070,NFLX,"Netflix, Inc.",2026-06-02T13:59:11Z,Yahoo,"Netflix Nearing 52-Week Low: Buy, Sell or Hold?",y,negative,assistant_draft
+F071,NFLX,"Netflix, Inc.",2026-10-14T17:11:14Z,Yahoo,Netflix (NFLX) Plans To Cut About 6% Of Its Workforce,y,negative,assistant_draft
+F072,NFLX,"Netflix, Inc.",2026-07-10T14:12:53Z,Yahoo,Netflix Weighs New Strategy as Report Highlights Subscriber Engagement Concerns (NFLX),y,negative,assistant_draft
+F073,NFLX,"Netflix, Inc.",2026-11-03T20:28:17Z,Yahoo,Byron Donalds Could Be Next Florida Governor: Here Are the Stocks He's Been Buying in 2026,n,neutral,assistant_draft
+F074,NFLX,"Netflix, Inc.",2026-03-19T09:06:51Z,Yahoo,Netflix Balances EU Rule Talks With BTS Event And Franchise Wins,y,neutral,assistant_draft
+F075,NFLX,"Netflix, Inc.",2025-11-23T14:31:00Z,SeekingAlpha,Alger AI Enablers & Adopters ETF Q3 2025 Portfolio Update,n,neutral,assistant_draft
+F076,NFLX,"Netflix, Inc.",2026-05-31T16:04:01Z,Yahoo,Netflix Turns Wonka And Young MacDonald Into New Franchise Revenue Stream,y,positive,assistant_draft
+F077,AVGO,Broadcom Inc.,2026-01-11T21:35:00Z,Yahoo,Should You Forget Nvidia and Buy These 2 Artificial Intelligence (AI) Stocks Right Now?,n,neutral,assistant_draft
+F078,AVGO,Broadcom Inc.,2026-09-08T17:18:03Z,Yahoo,Jim Cramer picks Nvidia and Broadcom as OpenAI GPT-6 Astra winners,y,positive,assistant_draft
+F079,AVGO,Broadcom Inc.,2026-06-17T15:31:00Z,Yahoo,AVGO's Gross Margin Contracts Y/Y: Is Growth Getting Harder?,y,negative,assistant_draft
+F080,AVGO,Broadcom Inc.,2026-09-24T14:26:03Z,Benzinga,"EXCLUSIVE: Nvidia Keeps AI Profits, TSMC May Want a Bigger Cut",n,neutral,assistant_draft
+F081,AVGO,Broadcom Inc.,2026-06-25T18:09:31Z,Benzinga,"Nancy Pelosi Has Added These 9 Stocks To Her Portfolio Since 2025, Including Three Magnificent Seven Names",n,neutral,assistant_draft
+F082,AVGO,Broadcom Inc.,2026-08-25T05:58:39Z,Benzinga,Exploring The Competitive Space: Broadcom Versus Industry Peers In Semiconductors &amp; Semiconductor Equipment,y,neutral,assistant_draft
+F083,AVGO,Broadcom Inc.,2025-12-23T14:52:43Z,Yahoo,Where Will Broadcom (AVGO) Stock Be in 5 Years?,y,neutral,assistant_draft
+F084,AVGO,Broadcom Inc.,2026-02-09T15:37:47Z,Benzinga,Shares of companies in the broader tech sector are trading higher amid overall market strength.,n,neutral,assistant_draft
+F085,AVGO,Broadcom Inc.,2025-12-15T18:29:14Z,Yahoo,This Bearish Options Trade Could Pay Off If AI Jitters Hit Nvidia Stock,n,neutral,assistant_draft
+F086,AVGO,Broadcom Inc.,2026-09-03T17:23:00Z,Yahoo,Broadcom's AI outlook draws mixed market reaction,y,neutral,assistant_draft
+F087,AVGO,Broadcom Inc.,2026-06-17T15:27:09Z,Yahoo,Is This The Best Time to Buy Broadcom (AVGO)?,y,neutral,assistant_draft
+F088,AVGO,Broadcom Inc.,2026-03-20T12:05:25Z,Yahoo,Broadcom Targets Quantum Safe Infrastructure With Silicon Level Encryption Rollout,y,positive,assistant_draft
+F089,HD,"The Home Depot, Inc.",2026-10-20T12:00:05Z,Yahoo,"Here is What to Know Beyond Why The Home Depot, Inc. (HD) is a Trending Stock",y,neutral,assistant_draft
+F090,HD,"The Home Depot, Inc.",2026-06-28T10:33:34Z,Yahoo,"The Home Depot, Inc. (HD) Is A Top Richard Chilton Stock Pick",y,positive,assistant_draft
+F091,HD,"The Home Depot, Inc.",2025-12-16T17:30:00Z,Yahoo,Midwest Based Hardware Retailer Files For Bankruptcy,n,neutral,assistant_draft
+F092,HD,"The Home Depot, Inc.",2026-05-20T15:10:48Z,Yahoo,"Lowe's, Home Depot Stock Plumb New Lows Despite Earnings Beats",y,negative,assistant_draft
+F093,HD,"The Home Depot, Inc.",2026-09-22T14:09:24Z,Yahoo,"His Bet On Home Depot Made Ken Langone A Billionaire. Now He Sees Eli Lilly Stock Hitting $2,000",n,neutral,assistant_draft
+F094,HD,"The Home Depot, Inc.",2025-11-24T14:00:04Z,Yahoo,"The Home Depot, Inc. (HD) Is a Trending Stock: Facts to Know Before Betting on It",y,neutral,assistant_draft
+F095,HD,"The Home Depot, Inc.",2026-10-27T03:45:00Z,SeekingAlpha,Parnassus Value Equity Fund Q3 2026 Portfolio Review,n,neutral,assistant_draft
+F096,HD,"The Home Depot, Inc.",2026-06-14T14:13:04Z,Yahoo,Home Depot’s Pro Pivot Reshapes Growth Potential And Earnings Mix,y,neutral,assistant_draft
+F097,HD,"The Home Depot, Inc.",2025-12-02T14:42:00Z,Yahoo,"Zacks Investment Ideas feature highlights: JP Morgan, Home Depot, Lennar, NextEra Energy and American Electric Power",n,neutral,assistant_draft
+F098,HD,"The Home Depot, Inc.",2026-03-27T11:01:07Z,Benzinga,"Options Exercise Update At Home Depot: Teresa Wynn Roseborough Engages, Resulting In $0",y,neutral,assistant_draft
+F099,HD,"The Home Depot, Inc.",2026-02-17T16:53:00Z,Yahoo,Home Depot's Capital Discipline Drives Long-Term Shareholder Value,y,positive,assistant_draft
+F100,HD,"The Home Depot, Inc.",2026-02-25T14:05:05Z,Yahoo,Home Depot sees mixed Q4 results amid steady housing demand,y,neutral,assistant_draft

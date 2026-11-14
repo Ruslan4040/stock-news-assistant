@@ -99,13 +99,15 @@ llm:
     allow_fallbacks: false
   temperature: 0
   max_tokens: 2000
-  max_retries: 6               # transport errors (429 / 5xx / timeout); Google fails ~40% of calls
+  max_retries: 10              # transport errors (5xx / timeout / cut answers); ~60% of calls fail
+  max_quota_waits: 60          # 429 pauses per call; they do not use up max_retries
+  quota_pause_seconds: 15      # shared pause after a 429 (the API hint of ~55 s wastes quota)
   backoff_seconds: 2
   max_backoff_seconds: 60
   timeout_seconds: 120
   json_retries: 1              # one more try when the answer is not valid JSON for the schema
-  max_rpm: 28                  # Google AI Studio free tier: 30 requests per minute for gemma-4-31b
-  max_workers: 10              # parallel calls in eval runs
+  max_rpm: 30                  # request starts per minute = Google's free quota for gemma-4-31b
+  max_workers: 16              # parallel pipeline runs in eval jobs
 
 # Current prompt version per component. A new version = a new file in prompts/, the old one stays.
 prompts:
@@ -120,6 +122,7 @@ simulator:
   confidence_threshold: 70     # buy only if action = buy and confidence >= 70
   position_size: 0.2           # 20% of equity per trade
   fee: 0.001                   # 0.1% per trade
+  min_position_cash: 100       # skip a buy when less cash than this is left
   horizon_days: {"1d": 1, "1w": 5}   # trading days
   trading_days_per_year: 252
 

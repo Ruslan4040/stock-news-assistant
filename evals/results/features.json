@@ -1,0 +1,29 @@
+{
+ "component": "features",
+ "run_date": "2026-11-14",
+ "model": null,
+ "prompt_version": null,
+ "eval_data": "evals/labels/features_reference.csv (3 tickers x 5 dates)",
+ "limit": null,
+ "metrics": [
+  {
+   "name": "exact_match_rate",
+   "value": 1.0,
+   "ci_low": 1.0,
+   "ci_high": 1.0,
+   "n": 15,
+   "baselines": {},
+   "tolerance": 1e-06,
+   "matches": 15
+  },
+  {
+   "name": "max_abs_error",
+   "value": 6.938893903907228e-18,
+   "ci_low": null,
+   "ci_high": null,
+   "n": 15,
+   "baselines": {}
+  }
+ ],
+ "details": {}
+}

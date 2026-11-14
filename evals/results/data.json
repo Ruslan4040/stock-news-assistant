@@ -1,0 +1,65 @@
+{
+ "component": "data",
+ "run_date": "2026-11-14",
+ "model": null,
+ "prompt_version": null,
+ "eval_data": "all downloaded prices, raw Kaggle rows of the 8 tickers, sets A/B/C",
+ "limit": null,
+ "metrics": [
+  {
+   "name": "missing_trading_days_rate",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 17840,
+   "baselines": {},
+   "count": 0
+  },
+  {
+   "name": "duplicate_headlines_rate_raw",
+   "value": 0.043577522329474906,
+   "ci_low": 0.041094244402611446,
+   "ci_high": 0.04626106460527897,
+   "n": 24967,
+   "baselines": {},
+   "count": 1088
+  },
+  {
+   "name": "duplicate_headlines_rate_in_sets",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 7478,
+   "baselines": {},
+   "count": 0
+  },
+  {
+   "name": "lookahead_violation_rate",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 7478,
+   "baselines": {},
+   "count": 0
+  },
+  {
+   "name": "set_b_leak_rate",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 3013,
+   "baselines": {},
+   "count": 0
+  },
+  {
+   "name": "missing_outcome_rate",
+   "value": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n": 600,
+   "baselines": {},
+   "count": 0
+  }
+ ],
+ "details": {}
+}
