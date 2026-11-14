@@ -1,0 +1,28 @@
+# Python 3.11. Pinned versions (AGENTS.md §4). Ask before adding a new dependency.
+
+# core
+pandas==3.1.1
+numpy==2.4.6
+pyyaml==6.0.3
+python-dotenv==1.2.4
+pydantic==2.14.3
+requests==2.34.2          # OpenRouter + Finnhub REST calls (no SDKs)
+
+# data
+yfinance==1.8.0           # daily prices + live headlines backup
+pandas-market-calendars==5.6.0  # NYSE trading days for time alignment
+huggingface-hub==2.4.0    # Financial PhraseBank download
+pyarrow==26.0.1           # parquet I/O
+
+# evaluation + baseline
+scikit-learn==1.9.1       # F1, confusion matrix
+transformers==5.23.0      # FinBERT baseline (ProsusAI/finbert)
+torch==2.15.0
+
+# UI
+streamlit==1.67.0
+plotly==7.1.0
+
+# dev
+pytest==9.2.0
+ruff==0.17.5

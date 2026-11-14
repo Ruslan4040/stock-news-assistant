@@ -1,0 +1,22 @@
+# secrets
+.env
+
+# data, logs, caches (never commit)
+data/raw/
+data/processed/*
+!data/processed/.gitkeep
+logs/*
+!logs/.gitkeep
+.cache/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

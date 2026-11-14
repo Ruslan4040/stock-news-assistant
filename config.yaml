@@ -1,0 +1,80 @@
+# Stock News Awareness Assistant — every parameter lives here (AGENTS.md §4). No magic numbers in code.
+
+seed: 42
+
+# Ticker -> company name + name variants. Used by the relevance filter and by set-B anonymization.
+# AAPL, MSFT, AMZN, META were replaced (human decision, 2026-11-14): they have 0 headlines for 2019
+# in the Kaggle dataset. See docs/crisp_dm/01_business.md.
+tickers:
+  GOOGL: {name: "Alphabet Inc.", aliases: ["Alphabet", "Google", "GOOG"]}
+  NVDA: {name: "NVIDIA Corporation", aliases: ["NVIDIA", "Nvidia"]}
+  TSLA: {name: "Tesla, Inc.", aliases: ["Tesla"]}
+  JPM: {name: "JPMorgan Chase & Co.", aliases: ["JPMorgan", "JP Morgan", "J.P. Morgan", "Chase"]}
+  INTC: {name: "Intel Corporation", aliases: ["Intel"]}
+  NFLX: {name: "Netflix, Inc.", aliases: ["Netflix"]}
+  AVGO: {name: "Broadcom Inc.", aliases: ["Broadcom"]}
+  HD: {name: "The Home Depot, Inc.", aliases: ["Home Depot"]}
+
+# Extra Kaggle `stock` codes that are merged into a config ticker.
+kaggle_ticker_aliases:
+  GOOGL: [GOOG]
+
+dates:
+  price_start: "2018-01-01"
+  set_a_year: 2019
+
+market:
+  calendar: "NYSE"
+  timezone: "America/New_York"
+  close_time: "16:00"          # news after close belongs to the next trading day
+
+news:
+  window_days: 3               # headlines in [t - 3 days, t]
+  # Kaggle rows for 2019 carry a date only (00:00:00, no time of day).
+  # Treat them as published after close -> next trading day (the safe side for look-ahead).
+  date_only_policy: "next_trading_day"
+  finnhub_lookback_days: 365
+
+llm:
+  # Gemma 4 31B (Google DeepMind, open weights). Frozen once phase 5 starts.
+  model_id: "google/gemma-4-31b-it:free"
+  model_release_date: "2026-04-02"   # first listed on OpenRouter
+  knowledge_cutoff: "2025-01-31"     # HF model card: pre-training cutoff "January 2025" (end of month = conservative)
+  provider:                          # pin one provider so outputs are reproducible
+    only: ["google-ai-studio"]
+    allow_fallbacks: false
+  temperature: 0
+  max_retries: 3
+  backoff_seconds: 2
+  timeout_seconds: 60
+
+simulator:
+  start_cash: 10000
+  confidence_threshold: 70     # buy only if action = buy and confidence >= 70
+  position_size: 0.2           # 20% of equity per trade
+  fee: 0.001                   # 0.1% per trade
+  horizon_days: {"1d": 1, "1w": 5}   # trading days
+
+evals:
+  sample_n: 300                # decision points per historical set (A, B, C)
+  smoke_limit: 20
+  bootstrap_n: 1000
+  ci_level: 0.95
+  confidence_buckets: [[50, 60], [60, 80], [80, 100]]
+  memory_probe_n: 50
+  memory_probe_tolerance: 0.05 # answer within +-5% of the true close
+  judge_human_n: 20
+  fresh_labels_n: 100
+  phrasebank: {repo: "takala/financial_phrasebank", config: "sentences_75agree", n: 400}
+  finbert_model: "ProsusAI/finbert"
+
+paths:
+  raw_dir: "data/raw"
+  kaggle_news_dir: "data/raw/kaggle_news"
+  kaggle_files: ["raw_analyst_ratings.csv", "raw_partner_headlines.csv"]
+  processed_dir: "data/processed"
+  prompts_dir: "prompts"
+  llm_cache_dir: ".cache/llm"
+  llm_log: "logs/llm_calls.jsonl"
+  labels_dir: "evals/labels"
+  results_dir: "evals/results"
