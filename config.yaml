@@ -2,18 +2,52 @@
 
 seed: 42
 
-# Ticker -> company name + name variants. Used by the relevance filter and by set-B anonymization.
+# Ticker -> company name + name variants.
+#   aliases: company names and codes (relevance filter + set-B anonymization -> "Company X")
+#   people / identity: executives, products and deal targets that reveal the company (set B only)
 # AAPL, MSFT, AMZN, META were replaced (human decision, 2026-11-14): they have 0 headlines for 2019
 # in the Kaggle dataset. See docs/crisp_dm/01_business.md.
 tickers:
-  GOOGL: {name: "Alphabet Inc.", aliases: ["Alphabet", "Google", "GOOG"]}
-  NVDA: {name: "NVIDIA Corporation", aliases: ["NVIDIA", "Nvidia"]}
-  TSLA: {name: "Tesla, Inc.", aliases: ["Tesla"]}
-  JPM: {name: "JPMorgan Chase & Co.", aliases: ["JPMorgan", "JP Morgan", "J.P. Morgan", "Chase"]}
-  INTC: {name: "Intel Corporation", aliases: ["Intel"]}
-  NFLX: {name: "Netflix, Inc.", aliases: ["Netflix"]}
-  AVGO: {name: "Broadcom Inc.", aliases: ["Broadcom"]}
-  HD: {name: "The Home Depot, Inc.", aliases: ["Home Depot"]}
+  GOOGL:
+    name: "Alphabet Inc."
+    aliases: ["Alphabet", "Google", "GOOGL", "GOOG"]
+    people: ["Sundar Pichai", "Pichai", "Larry Page", "Sergey Brin"]
+    identity: ["YouTube", "Waymo", "Android", "Pixel", "Chrome", "Gmail", "DeepMind", "Stadia", "Fitbit"]
+  NVDA:
+    name: "NVIDIA Corporation"
+    aliases: ["NVIDIA", "Nvidia", "NVDA"]
+    people: ["Jensen Huang", "Huang"]
+    identity: ["GeForce", "RTX", "Mellanox"]
+  TSLA:
+    name: "Tesla, Inc."
+    aliases: ["Tesla", "TSLA"]
+    people: ["Elon Musk", "Musk"]
+    identity: ["Model 3", "Model S", "Model X", "Model Y", "Cybertruck", "Gigafactory", "Autopilot", "SolarCity", "SpaceX"]
+  JPM:
+    name: "JPMorgan Chase & Co."
+    aliases: ["JPMorgan Chase & Co.", "JPMorgan Chase", "JPMorgan", "JP Morgan", "J.P. Morgan", "Chase", "JPM"]
+    people: ["Jamie Dimon", "Dimon"]
+    identity: []
+  INTC:
+    name: "Intel Corporation"
+    aliases: ["Intel", "INTC"]
+    people: ["Bob Swan", "Robert Swan", "Pat Gelsinger", "Gelsinger"]
+    identity: ["Mobileye", "Xeon", "Altera"]
+  NFLX:
+    name: "Netflix, Inc."
+    aliases: ["Netflix", "NFLX"]
+    people: ["Reed Hastings", "Hastings", "Ted Sarandos", "Sarandos"]
+    identity: ["Stranger Things", "The Irishman"]
+  AVGO:
+    name: "Broadcom Inc."
+    aliases: ["Broadcom", "AVGO"]
+    people: ["Hock E Tan", "Hock E. Tan", "Hock Tan"]
+    identity: ["Symantec", "CA Technologies"]
+  HD:
+    name: "The Home Depot, Inc."
+    aliases: ["The Home Depot", "Home Depot", "HD"]
+    people: ["Craig Menear", "Menear"]
+    identity: []
 
 # Extra Kaggle `stock` codes that are merged into a config ticker.
 kaggle_ticker_aliases:
@@ -21,32 +55,65 @@ kaggle_ticker_aliases:
 
 dates:
   price_start: "2018-01-01"
+  prices_end: "2026-11-13"     # last close in the downloaded snapshot (download day: 2026-11-14)
   set_a_year: 2019
+  kaggle_end: "2020-06-11"     # last date in the Kaggle files
+  fresh_start: "2025-11-24"    # first set-C decision day (Finnhub history starts 2025-11-19, window = 3 days)
+  fresh_end: "2026-11-06"      # last set-C decision day (5 trading days before prices_end)
 
 market:
   calendar: "NYSE"
+  calendar_start: "2009-01-01"
+  calendar_end: "2027-12-31"
   timezone: "America/New_York"
-  close_time: "16:00"          # news after close belongs to the next trading day
+  close_time: "16:00"          # regular close; the calendar gives the real close on early-close days
 
 news:
   window_days: 3               # headlines in [t - 3 days, t]
+  max_headlines: 15            # most recent headlines kept per decision (after de-duplication)
   # Kaggle rows for 2019 carry a date only (00:00:00, no time of day).
   # Treat them as published after close -> next trading day (the safe side for look-ahead).
   date_only_policy: "next_trading_day"
-  finnhub_lookback_days: 365
+  max_headline_chars: 300      # longer headlines are cut
+  finnhub_url: "https://finnhub.io/api/v1/company-news"
+  finnhub_history_start: "2025-11-19"
+  finnhub_rpm: 50              # free tier allows 60 requests per minute
+  finnhub_retries: 4
+  finnhub_backoff: 5           # seconds, multiplied by the attempt number
+  finnhub_page_cap: 240        # one request returns at most ~250 items (most recent first)
+  live_price_days: 120         # calendar days of prices fetched for a live request
+
+features:
+  vol_window: 20               # trading days
+  vol_low: 0.01                # daily return std below 1% = "low"
+  vol_high: 0.02               # above 2% = "high", otherwise "medium"
 
 llm:
   # Gemma 4 31B (Google DeepMind, open weights). Frozen once phase 5 starts.
   model_id: "google/gemma-4-31b-it:free"
   model_release_date: "2026-04-02"   # first listed on OpenRouter
   knowledge_cutoff: "2025-01-31"     # HF model card: pre-training cutoff "January 2025" (end of month = conservative)
+  api_url: "https://openrouter.ai/api/v1/chat/completions"
   provider:                          # pin one provider so outputs are reproducible
     only: ["google-ai-studio"]
     allow_fallbacks: false
   temperature: 0
-  max_retries: 3
+  max_tokens: 2000
+  max_retries: 6               # transport errors (429 / 5xx / timeout); Google fails ~40% of calls
   backoff_seconds: 2
-  timeout_seconds: 60
+  max_backoff_seconds: 60
+  timeout_seconds: 120
+  json_retries: 1              # one more try when the answer is not valid JSON for the schema
+  max_rpm: 28                  # Google AI Studio free tier: 30 requests per minute for gemma-4-31b
+  max_workers: 10              # parallel calls in eval runs
+
+# Current prompt version per component. A new version = a new file in prompts/, the old one stays.
+prompts:
+  relevance: "relevance_v1"
+  sentiment: "sentiment_v1"
+  advisor: "advisor_v1"
+  judge: "judge_v1"
+  memory_probe: "memory_probe_v1"
 
 simulator:
   start_cash: 10000
@@ -54,6 +121,7 @@ simulator:
   position_size: 0.2           # 20% of equity per trade
   fee: 0.001                   # 0.1% per trade
   horizon_days: {"1d": 1, "1w": 5}   # trading days
+  trading_days_per_year: 252
 
 evals:
   sample_n: 300                # decision points per historical set (A, B, C)
@@ -61,18 +129,33 @@ evals:
   bootstrap_n: 1000
   ci_level: 0.95
   confidence_buckets: [[50, 60], [60, 80], [80, 100]]
-  memory_probe_n: 50
+  memory_probe_n: 50           # questions per period (2019 and the post-cutoff control)
+  memory_probe_batch: 10
   memory_probe_tolerance: 0.05 # answer within +-5% of the true close
+  judge_n: 100                 # explanations checked by the judge
   judge_human_n: 20
   fresh_labels_n: 100
-  phrasebank: {repo: "takala/financial_phrasebank", config: "sentences_75agree", n: 400}
+  sentiment_batch: 10          # sentences per sentiment call in the PhraseBank eval
+  phrasebank: {repo: "takala/financial_phrasebank", file: "data/FinancialPhraseBank-v1.0.zip", member: "Sentences_75Agree.txt", n: 400}
   finbert_model: "ProsusAI/finbert"
+  features_reference: {tickers: ["NVDA", "JPM", "HD"], n_dates: 5}
+  demo_cases:                  # UI checklist and the report walkthrough
+    - {ticker: "NVDA", date: "2019-05-15"}
+    - {ticker: "JPM", date: "2019-10-15"}
+    - {ticker: "TSLA", date: "2026-10-22"}
 
 paths:
   raw_dir: "data/raw"
   kaggle_news_dir: "data/raw/kaggle_news"
   kaggle_files: ["raw_analyst_ratings.csv", "raw_partner_headlines.csv"]
+  prices_dir: "data/raw/prices"
+  finnhub_dir: "data/raw/finnhub"
+  phrasebank_dir: "data/raw/phrasebank"
+  yf_news_dir: "data/raw/yf_news"
   processed_dir: "data/processed"
+  news_cache_dir: "data/processed/news_cache"
+  live_dir: "data/processed/live"
+  runs_dir: "data/processed/runs"
   prompts_dir: "prompts"
   llm_cache_dir: ".cache/llm"
   llm_log: "logs/llm_calls.jsonl"

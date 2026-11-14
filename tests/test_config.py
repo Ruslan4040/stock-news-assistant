@@ -3,7 +3,8 @@
 from src.config import ROOT, load_config
 
 REQUIRED_SECTIONS = {
-    "seed", "tickers", "dates", "market", "news", "llm", "simulator", "evals", "paths",
+    "seed", "tickers", "dates", "market", "news", "features", "llm", "prompts", "simulator",
+    "evals", "paths",
 }
 
 
