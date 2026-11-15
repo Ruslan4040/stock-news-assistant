@@ -157,7 +157,12 @@ def set_d_row() -> tuple[dict, dict]:
         elif side:
             hits.append(float(side * (closes.loc[days[1]] / closes.loc[days[0]] - 1) > 0))
     row = common.metric_row("D.hit_rate", common.bootstrap(common.mean, np.array(hits)))
-    return row, {"live_advice_recorded": len(live.load_store()), "outcome_pending": pending}
+    store = live.load_store()
+    listed = ", ".join(f"{a.ticker} {a.result.advice.action} ({a.result.advice.confidence})"
+                       for a in store)
+    recorded = sorted({a.as_of[:10] for a in store})
+    return row, {"live_advice_recorded": len(store), "outcome_pending": pending,
+                 "live_advice": listed, "live_recorded_on": ", ".join(recorded)}
 
 
 def sentiment_gap_row(limit: int | None) -> dict:

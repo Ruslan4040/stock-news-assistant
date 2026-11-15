@@ -249,7 +249,7 @@ The judge split 100 explanations into 547 factual claims. **99.8%** [99.4%, 100.
 | Hit rate B (same rows, anonymized) | 48.1% [39.7%, 56.5%], n = 131 |
 | Hit rate C (after the knowledge cutoff) | 52.7% [43.5%, 61.1%], n = 131 |
 | A minus B on the same decisions (paired) | 0.0% [0.0%, 0.0%], n = 124 |
-| Hit rate D (live, 1-day horizon) | n/a, n = 0 (8 advice recorded, 8 outcomes pending) |
+| Hit rate D (live, 1-day horizon) | not scored yet: n = 0; 8 advice recorded on 2026-11-14, 8 outcomes pending (see below) |
 | Memory probe: 2019 closing prices within ± 5% | 36.0% [24.0%, 50.0%], n = 50 |
 | Memory probe: control dates after the cutoff | 0.0% [0.0%, 0.0%], n = 50 |
 | Sentiment gap: PhraseBank accuracy minus fresh accuracy | -0.018 [-0.082, 0.045] |
@@ -264,7 +264,7 @@ The judge split 100 explanations into 547 factual claims. **99.8%** [99.4%, 100.
   - The advice is driven by the features and headlines in the prompt, not by the company's name or the date.
 - **Sentiment gap.** PhraseBank accuracy is not higher than accuracy on the fresh headlines (difference -0.018, interval includes 0). This gives no sign that the model memorized the PhraseBank labels.
 - **Decision.** By the rule fixed in the spec, **the LLM does not peek** in the advice task. The memory probe shows that a weaker design could leak: a prompt that asks "what happened next?" might get remembered answers. Our advisor gets only features and headlines, and it does not.
-- **Set D.** 8 live advice records exist; their 1-day outcomes become known after the next trading close and are scored by re-running `python -m evals.eval_lookahead`.
+- **Set D could not be scored before submission.** The spec defines D as live advice "from now until submission". The 8 live advice were recorded on 2026-11-14, a Saturday, and the report was submitted the next day, so no trading day has closed in between and n = 0. The advice (action and confidence) is kept as a pre-registered prediction: GOOGL buy (68), NVDA sell (75), TSLA hold (55), JPM hold (58), INTC sell (65), NFLX buy (65), AVGO hold (55), HD hold (55). This list is in `evals/results/lookahead.json`, committed to git before any outcome was known, so it can be checked later by re-running `python -m evals.eval_lookahead` after the next two closes. The decision about peeking does not depend on D: it uses A, B and C.
 
 ### 5.9 Improvement loop
 The weakest point the evaluation found in the advisor was the horizon: `advisor_v1` almost never chose one day. `prompts/advisor_v2.md` adds an explicit rule for choosing the horizon and two short examples. It was compared with v1 on the first 50 decisions of sets A and C (`python -m evals.compare_advisor_prompts`).
@@ -330,4 +330,4 @@ The system was built with Claude Code. The agent was steered through files in th
 - **A free model on a free API.** An answered call needs 4.214 HTTP attempts on average; the rest fail and are retried. The system works, but a live request can take a minute or more.
 - **The judge test is narrow.** Almost all real claims are true, so agreement with the labels equals that of a judge that accepts everything. The planted claims show that it catches obvious inventions, but not whether it catches subtle ones, such as a wrong sentiment attributed to a true headline.
 - **Trader baseline.** Buy & hold is fully invested while the trader is mostly in cash, so their returns are not like for like. A buy & hold scaled to the trader's exposure would be a fairer baseline; it was not built.
-- **Set D** has only the live advice recorded on the day of the run; its outcomes arrive after the next trading days.
+- **Set D is empty.** The live advice was recorded over a weekend just before submission, so no outcome exists yet (n = 0). The live mode itself works and is shown in the demo; only its accuracy is unmeasured.

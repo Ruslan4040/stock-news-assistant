@@ -45,3 +45,10 @@ Gate: every component has a metric and a baseline.
 - Evidence: values from `evals/results/relevance.json` and `targets.json` after the run (relevance confusion tp 39, fp 2, fn 1); targets met 13 of 13.
 - Gate status: yes.
 - Open questions for the human: score set D after the close of 2026-11-17.
+
+## 2026-11-15 — Set D left unscored at submission
+- What was done: `eval_lookahead` now stores the list of recorded live advice (`live_advice`, `live_recorded_on`) in `evals/results/lookahead.json`; REPORT, demo script and README explain why D has n = 0.
+- Decisions & why: the 8 live advice were recorded on Saturday 2026-11-14 and the report is submitted on Sunday 2026-11-15, so no trading close lies in between. Alternative considered: backfilling D with past dates, rejected, because that would just be set C, not live advice. The advice is kept as a pre-registered prediction in git.
+- Evidence: `lookahead.json` details: live_advice_recorded 8, outcome_pending 8; the peeking decision uses A, B and C only (llm_peeks False).
+- Gate status: yes (every component has a metric and a baseline; D is an add-on in the spec).
+- Open questions for the human: none.
