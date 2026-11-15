@@ -8,7 +8,7 @@ description: Run all component evaluations and the look-ahead (memorization) exp
 1. Check that `.env` has the API keys and that the eval samples exist in `data/processed/`. If something is missing, stop and say what.
 2. Run every `evals/eval_*.py`: first a smoke run with `--limit 20`, then the full run. Use cached LLM responses; never clear the cache unless asked.
 3. Run the look-ahead experiment from docs/PROJECT_SPEC.md §8:
-   - advisor + simulator on sets A, B, C, D;
+   - advisor + simulator on sets A, B, C;
    - the direct memory probe;
    - the sentiment gap check (PhraseBank vs fresh human labels).
 4. Collect all `evals/results/*.json` into one table: component | metric | value | 95% CI | baseline | n | prompt version | model.

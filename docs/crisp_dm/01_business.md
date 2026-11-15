@@ -16,7 +16,7 @@ The second half matters as much as the first. A stock assistant that cannot show
 | Course evaluator / developer | proof that every step works and how well | Evals tab, trace panel, `evals/results/`, `docs/REPORT.md` |
 
 ### Scope
-**In:** 8 US large caps (GOOGL, NVDA, TSLA, JPM, INTC, NFLX, AVGO, HD); headlines only; daily prices; horizons 1 day and 1 week; historical mode and live mode; a long-only trading simulator; evaluation of every component; the look-ahead experiment (sets A, B, C, D).
+**In:** 8 US large caps (GOOGL, NVDA, TSLA, JPM, INTC, NFLX, AVGO, HD); headlines only; daily prices; horizons 1 day and 1 week; historical mode and live mode; a long-only trading simulator; evaluation of every component; the look-ahead experiment (sets A, B, C).
 
 **Out:** real trading, intraday data, short selling, portfolio optimization, full article text, fine-tuning, any claim of financial advice.
 

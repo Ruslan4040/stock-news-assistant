@@ -103,7 +103,7 @@ Input: `NVDA`, `2019-05-15`, historical mode.
 | LLM client | all eval runs | % valid JSON, % errors after retry, mean latency, cache hit rate | broken outputs would be counted as model mistakes | — |
 | Relevance filter | 100 human-labeled fresh headlines | precision, recall, F1 | precision = noise let through; recall = useful news lost | keep all headlines |
 | Sentiment labeler | PhraseBank sample (400) + 100 human-labeled fresh headlines | accuracy, macro-F1, confusion matrix | classes are imbalanced (many neutral) → macro-F1, not only accuracy | FinBERT; "always neutral" |
-| Advisor: direction | sets A–D (n ≈ 300 per historical set) | hit rate: the price moved in the advised direction over the chosen horizon | directly answers "is the advice right?" | "always buy" (stocks rise more often than they fall); "same as last move" |
+| Advisor: direction | sets A–C (n ≈ 300 per set) | hit rate: the price moved in the advised direction over the chosen horizon | directly answers "is the advice right?" | "always buy" (stocks rise more often than they fall); "same as last move" |
 | Advisor: horizon choice | same | return using the LLM-chosen horizon vs fixed 1d and fixed 1w | shows whether choosing the horizon adds value | fixed horizons |
 | Advisor: confidence | same | hit rate per confidence bucket (50–60 / 60–80 / 80–100) | the trader relies on confidence, so it must mean something (calibration) | hit rate should rise with confidence |
 | Explanation | 100 explanations | % claims supported by the inputs (judge); judge vs human agreement on 20 | catches hallucinated reasons; the agreement shows the judge can be trusted | — |
@@ -113,14 +113,13 @@ Input: `NVDA`, `2019-05-15`, historical mode.
 Every metric is reported with n and a 95% bootstrap confidence interval.
 
 ## 8. Look-ahead (memorization) experiment
-Run the advisor and the simulator on four sets with the same metrics:
+Run the advisor and the simulator on three sets with the same metrics:
 
 | Set | Data | Can the LLM know the outcome? |
 |---|---|---|
 | A | 2019, real names and dates | yes, possibly memorized |
 | B | the same rows as A, anonymized ("Company X", no dates, prices only as %) | hard |
 | C | fresh news from Finnhub, dated after the model's knowledge cutoff, or after its release date if the cutoff is unknown (§4b) | no |
-| D | live: from now until submission, 1-day horizon only (small n, reported as an add-on) | no |
 
 Extra checks:
 - **Direct memory probe:** 50 questions of the form "What was the close price of {ticker} on {date}?" → % of answers within ±5% of the truth.
@@ -130,7 +129,7 @@ Extra checks:
 
 ## 9. Constraints
 - Free OpenRouter models have rate and daily limits → cache every call, evaluate on samples (n ≈ 300–400), smoke-test with `--limit 20` first.
-- The deadline is 1–2 days: keep every component simple. Set D covers only 1–2 days.
+- The deadline is 1–2 days: keep every component simple.
 
 ## 10. Deliverables
 - GitHub repo with a README: setup, run commands, Mermaid diagram, business rules, results table.

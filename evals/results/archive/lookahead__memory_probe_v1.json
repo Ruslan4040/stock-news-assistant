@@ -3,7 +3,7 @@
  "run_date": "2026-11-15",
  "model": "google/gemma-4-31b-it:free",
  "prompt_version": "memory_probe_v1",
- "eval_data": "advisor runs on sets A/B/C, live advice (D), price files, sentiment eval data",
+ "eval_data": "advisor runs on sets A/B/C, price files, sentiment eval data",
  "limit": null,
  "metrics": [
   {
@@ -45,14 +45,6 @@
    "baselines": {}
   },
   {
-   "name": "D.hit_rate",
-   "value": null,
-   "ci_low": null,
-   "ci_high": null,
-   "n": 0,
-   "baselines": {}
-  },
-  {
    "name": "memory_probe.2019.within_5pct",
    "value": 0.36,
    "ci_low": 0.23950000000000043,
@@ -86,10 +78,6 @@
  "details": {
   "llm_peeks": false,
   "rule": "A.ci_low > C.ci_high and A.ci_low > B.ci_high (hit rate)",
-  "a_b_same_action_share": 0.93,
-  "live_advice_recorded": 8,
-  "outcome_pending": 8,
-  "live_advice": "GOOGL buy (68), NVDA sell (75), TSLA hold (55), JPM hold (58), INTC sell (65), NFLX buy (65), AVGO hold (55), HD hold (55)",
-  "live_recorded_on": "2026-11-14"
+  "a_b_same_action_share": 0.93
  }
 }

@@ -1,5 +1,5 @@
 # CRISP-DM 5. Evaluation
-Purpose: an eval script per component, results JSON, error analysis, the A/B/C/D experiment.
+Purpose: an eval script per component, results JSON, error analysis, the A/B/C experiment.
 Gate: every component has a metric and a baseline.
 
 ## How to read the results
@@ -18,7 +18,7 @@ Gate: every component has a metric and a baseline.
 | Advisor | sets A, B, C | hit rate, return by horizon, hit rate per confidence bucket | always buy; same as last move; fixed 1d / 1w |
 | Explanation judge | 100 explanations; claims of 20 labeled | claims supported; judge vs label agreement | – |
 | Trader | advice of sets A, B, C | total return, Sharpe, max drawdown, trades, win rate | buy & hold |
-| Look-ahead | sets A–D, memory probe, sentiment gap | decision by the rule of spec §8 | post-cutoff control for the probe |
+| Look-ahead | sets A–C, memory probe, sentiment gap | decision by the rule of spec §8 | post-cutoff control for the probe |
 | UI | 3 demo cases | checklist pass rate | – |
 
 ## Log
@@ -46,9 +46,9 @@ Gate: every component has a metric and a baseline.
 - Gate status: yes.
 - Open questions for the human: score set D after the close of 2026-11-17.
 
-## 2026-11-15 — Set D left unscored at submission
-- What was done: `eval_lookahead` now stores the list of recorded live advice (`live_advice`, `live_recorded_on`) in `evals/results/lookahead.json`; REPORT, demo script and README explain why D has n = 0.
-- Decisions & why: the 8 live advice were recorded on Saturday 2026-11-14 and the report is submitted on Sunday 2026-11-15, so no trading close lies in between. Alternative considered: backfilling D with past dates, rejected, because that would just be set C, not live advice. The advice is kept as a pre-registered prediction in git.
-- Evidence: `lookahead.json` details: live_advice_recorded 8, outcome_pending 8; the peeking decision uses A, B and C only (llm_peeks False).
-- Gate status: yes (every component has a metric and a baseline; D is an add-on in the spec).
+## 2026-11-15 — Live set removed from the look-ahead experiment
+- What was done: the human removed the live set from the experiment; the spec, `eval_lookahead.py`, README, report and demo script now use sets A, B, C only.
+- Decisions & why: the live advice was recorded on Saturday 2026-11-14 and the work is submitted on Sunday 2026-11-15, so no trading day closes in between and the set could have no outcomes. Alternative considered: keep it as "pending", rejected by the human. Live mode stays in the app.
+- Evidence: the peeking decision uses A, B and C only and did not change (`evals/results/lookahead.json`: llm_peeks False).
+- Gate status: yes.
 - Open questions for the human: none.

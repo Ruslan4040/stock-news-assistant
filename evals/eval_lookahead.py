@@ -1,7 +1,7 @@
 """Look-ahead (memorization) experiment: does the LLM 'remember the future'?
 
 Run: python -m evals.eval_lookahead [--limit N]
-1. Advisor hit rate on sets A (2019), B (A anonymized), C (after the cutoff), D (live).
+1. Advisor hit rate on sets A (2019), B (A anonymized), C (after the cutoff).
 2. Direct memory probe: closing prices of 2019 vs a control period after the cutoff.
 3. Sentiment gap: accuracy on PhraseBank vs on the fresh labeled headlines.
 Decision rule (spec §8): 'the LLM peeks' only if A beats C and B beyond their intervals.
@@ -19,7 +19,6 @@ from src.config import load_config
 from src.data import calendar as cal
 from src.data import prices
 from src.llm.client import Validator, call_llm
-from src.pipeline import live
 
 COMPONENT = "lookahead"
 PERIODS = {"2019": ("2019-01-01", "2019-12-31"), "post_cutoff": None}  # None = fresh period
@@ -144,27 +143,6 @@ def set_rows(limit: int | None) -> tuple[list[dict], dict]:
                   "a_b_same_action_share": same_action_share(limit)}
 
 
-def set_d_row() -> tuple[dict, dict]:
-    """Score the live advice whose next-day outcome is already known (1-day horizon)."""
-    hits, pending = [], 0
-    for advice in live.load_store():
-        closes = prices.live_prices(advice.ticker)["adj_close"]
-        entry = cal.first_close_at_or_after(pd.Timestamp(advice.as_of))
-        days = [pd.Timestamp(entry), pd.Timestamp(cal.next_trading_day(entry))]
-        side = {"buy": 1, "sell": -1, "hold": 0}[advice.result.advice.action]
-        if not all(day in closes.index for day in days):
-            pending += 1
-        elif side:
-            hits.append(float(side * (closes.loc[days[1]] / closes.loc[days[0]] - 1) > 0))
-    row = common.metric_row("D.hit_rate", common.bootstrap(common.mean, np.array(hits)))
-    store = live.load_store()
-    listed = ", ".join(f"{a.ticker} {a.result.advice.action} ({a.result.advice.confidence})"
-                       for a in store)
-    recorded = sorted({a.as_of[:10] for a in store})
-    return row, {"live_advice_recorded": len(store), "outcome_pending": pending,
-                 "live_advice": listed, "live_recorded_on": ", ".join(recorded)}
-
-
 def sentiment_gap_row(limit: int | None) -> dict:
     """Accuracy on PhraseBank minus accuracy on the fresh headlines (cached LLM answers)."""
     phrase = eval_sentiment.label_groups(eval_sentiment.phrasebank_frame(limit), None)
@@ -179,17 +157,14 @@ def main() -> None:
     limit = common.limit_argument(__doc__)
     count = limit or load_config()["evals"]["memory_probe_n"]
     metrics, details = set_rows(limit)
-    d_row, d_info = set_d_row()
-    metrics.append(d_row)
     questions = []
     for period in PERIODS:
         row, scored = probe(period, count)
         metrics.append(row)
         questions += [{"period": period, **q} for q in scored]
     metrics.append(sentiment_gap_row(limit))
-    details.update(d_info)
     version = load_config()["prompts"]["memory_probe"]
-    data = "advisor runs on sets A/B/C, live advice (D), price files, sentiment eval data"
+    data = "advisor runs on sets A/B/C, price files, sentiment eval data"
     path = common.write_result(COMPONENT, metrics, data, version, limit, details)
     questions.sort(key=lambda q: -min(q["pct_error_raw"], q["pct_error_adjusted"]))
     common.write_errors(COMPONENT, questions, limit)

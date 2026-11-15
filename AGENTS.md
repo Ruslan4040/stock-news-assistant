@@ -18,7 +18,7 @@ We work in CRISP-DM phases.
 | 2 | Data Understanding | download scripts; a data card per dataset: source, size, columns, date range, missing values, class balance, 5 examples | a data card exists for every dataset in the spec | `docs/crisp_dm/02_data.md` |
 | 3 | Data Preparation | cleaning, ticker filtering, time alignment, anonymized set B, eval samples with a fixed seed | `pytest` passes, including the no-look-ahead test | `docs/crisp_dm/03_preparation.md` |
 | 4 | Modeling | pipeline components (one per task), prompts, simulator | every component has a passing unit test | `docs/crisp_dm/04_modeling.md` |
-| 5 | Evaluation | an eval script per component, results JSON, error analysis, the A/B/C/D experiment | every component has a metric and a baseline | `docs/crisp_dm/05_evaluation.md` |
+| 5 | Evaluation | an eval script per component, results JSON, error analysis, the A/B/C experiment | every component has a metric and a baseline | `docs/crisp_dm/05_evaluation.md` |
 | 6 | Deployment | Streamlit app with a trace panel, README run instructions, `docs/REPORT.md`, demo script | the app runs from a clean clone by following the README; the UI checklist passes | `docs/crisp_dm/06_deployment.md` |
 
 CRISP-DM is a cycle. If Evaluation shows a problem, go back to the right phase, fix it, re-run the evals, and record the loop (trigger metric, change, before → after) in `docs/crisp_dm/iterations.md`.

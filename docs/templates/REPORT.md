@@ -38,7 +38,7 @@ No synthetic data is used. Existing datasets were checked first and four were re
 - Most headlines tagged with a ticker are not about the company. On average only {{data:@prepare_report.set_a.headlines_naming_company_mean}} of {{data:@prepare_report.set_a.headlines_per_decision_mean}} headlines per 2019 decision even name it. This is why the relevance filter exists.
 - {{data:duplicate_headlines_rate_raw|pct}} of the raw rows are duplicates (the same headline under GOOG and GOOGL, for example). They are removed.
 
-**Evaluation sets.** A: {{data:@prepare_report.set_a.decisions}} decisions (ticker, day) sampled from 2019 with seed 42. B: the same decisions with company names, people, products, dates and dollar amounts removed. C: {{data:@prepare_report.set_c.decisions}} decisions from Nov 2025 – Nov 2026, after the model's knowledge cutoff (January 2025). D: live advice recorded on the day of the run. The free API allowed {{advisor:@A.decisions}} decisions per set to go through the LLM; they are the first ones of a fixed random order.
+**Evaluation sets.** A: {{data:@prepare_report.set_a.decisions}} decisions (ticker, day) sampled from 2019 with seed 42. B: the same decisions with company names, people, products, dates and dollar amounts removed. C: {{data:@prepare_report.set_c.decisions}} decisions from Nov 2025 – Nov 2026, after the model's knowledge cutoff (January 2025). The free API allowed {{advisor:@A.decisions}} decisions per set to go through the LLM; they are the first ones of a fixed random order.
 
 ## 3. Components
 
@@ -226,7 +226,6 @@ The judge split {{judge:claims_supported_rate:field:explanations}} explanations 
 | Hit rate B (same rows, anonymized) | {{lookahead:B.hit_rate|pct}} {{lookahead:B.hit_rate:ci|pct}}, n = {{lookahead:B.hit_rate:n}} |
 | Hit rate C (after the knowledge cutoff) | {{lookahead:C.hit_rate|pct}} {{lookahead:C.hit_rate:ci|pct}}, n = {{lookahead:C.hit_rate:n}} |
 | A minus B on the same decisions (paired) | {{lookahead:A_minus_B.hit_rate_paired|pct}} {{lookahead:A_minus_B.hit_rate_paired:ci|pct}}, n = {{lookahead:A_minus_B.hit_rate_paired:n}} |
-| Hit rate D (live, 1-day horizon) | not scored yet: n = {{lookahead:D.hit_rate:n}}; {{lookahead:@live_advice_recorded}} advice recorded on {{lookahead:@live_recorded_on|raw}}, {{lookahead:@outcome_pending}} outcomes pending (see below) |
 | Memory probe: 2019 closing prices within ± 5% | {{lookahead:memory_probe.2019.within_5pct|pct}} {{lookahead:memory_probe.2019.within_5pct:ci|pct}}, n = {{lookahead:memory_probe.2019.within_5pct:n}} |
 | Memory probe: control dates after the cutoff | {{lookahead:memory_probe.post_cutoff.within_5pct|pct}} {{lookahead:memory_probe.post_cutoff.within_5pct:ci|pct}}, n = {{lookahead:memory_probe.post_cutoff.within_5pct:n}} |
 | Sentiment gap: PhraseBank accuracy minus fresh accuracy | {{lookahead:sentiment_gap.accuracy_phrasebank_minus_fresh}} {{lookahead:sentiment_gap.accuracy_phrasebank_minus_fresh:ci}} |
@@ -241,7 +240,6 @@ The judge split {{judge:claims_supported_rate:field:explanations}} explanations 
   - The advice is driven by the features and headlines in the prompt, not by the company's name or the date.
 - **Sentiment gap.** PhraseBank accuracy is not higher than accuracy on the fresh headlines (difference {{lookahead:sentiment_gap.accuracy_phrasebank_minus_fresh}}, interval includes 0). This gives no sign that the model memorized the PhraseBank labels.
 - **Decision.** By the rule fixed in the spec, **the LLM does not peek** in the advice task. The memory probe shows that a weaker design could leak: a prompt that asks "what happened next?" might get remembered answers. Our advisor gets only features and headlines, and it does not.
-- **Set D could not be scored before submission.** The spec defines D as live advice "from now until submission". The {{lookahead:@live_advice_recorded}} live advice were recorded on {{lookahead:@live_recorded_on|raw}}, a Saturday, and the report was submitted the next day, so no trading day has closed in between and n = {{lookahead:D.hit_rate:n}}. The advice (action and confidence) is kept as a pre-registered prediction: {{lookahead:@live_advice|raw}}. This list is in `evals/results/lookahead.json`, committed to git before any outcome was known, so it can be checked later by re-running `python -m evals.eval_lookahead` after the next two closes. The decision about peeking does not depend on D: it uses A, B and C.
 
 ### 5.9 Improvement loop
 The weakest point the evaluation found in the advisor was the horizon: `advisor_v1` almost never chose one day. `prompts/advisor_v2.md` adds an explicit rule for choosing the horizon and two short examples. It was compared with v1 on the first 50 decisions of sets A and C (`python -m evals.compare_advisor_prompts`).
@@ -307,4 +305,3 @@ The system was built with Claude Code. The agent was steered through files in th
 - **A free model on a free API.** An answered call needs {{llm_client:mean_http_attempts_per_call}} HTTP attempts on average; the rest fail and are retried. The system works, but a live request can take a minute or more.
 - **The judge test is narrow.** Almost all real claims are true, so agreement with the labels equals that of a judge that accepts everything. The planted claims show that it catches obvious inventions, but not whether it catches subtle ones, such as a wrong sentiment attributed to a true headline.
 - **Trader baseline.** Buy & hold is fully invested while the trader is mostly in cash, so their returns are not like for like. A buy & hold scaled to the trader's exposure would be a fairer baseline; it was not built.
-- **Set D is empty.** The live advice was recorded over a weekend just before submission, so no outcome exists yet (n = {{lookahead:D.hit_rate:n}}). The live mode itself works and is shown in the demo; only its accuracy is unmeasured.

@@ -1,7 +1,6 @@
 """Live mode: one advice per ticker per day, plus a new one when a new relevant headline appears.
 
-Every live advice is appended to data/processed/live/advice.jsonl. These records are set D
-of the look-ahead experiment.
+Every live advice is appended to data/processed/live/advice.jsonl.
 
 Run: python -m src.pipeline.live     record today's advice for every config ticker
 """
@@ -82,7 +81,7 @@ def live_advice(ticker: str, now: datetime | None = None) -> tuple[LiveAdvice, b
 
 
 def main() -> None:
-    """Record today's live advice for every ticker (set D)."""
+    """Record today's live advice for every ticker."""
     for ticker in load_config()["tickers"]:
         record, created = live_advice(ticker)
         advice = record.result.advice

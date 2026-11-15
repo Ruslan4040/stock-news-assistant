@@ -39,7 +39,7 @@ After each step, check the result. If the agent did something wrong, fix the rul
 > Use the add-component skill to build the explanation judge (eval only). Plan first.
 
 ## 5. Evaluation
-> Use the run-evals skill: run all component evals, the A/B/C/D experiment, the memory probe and the sentiment gap check. Then explain in docs/crisp_dm/05_evaluation.md which metrics are weak and why (use the *_errors.csv files).
+> Use the run-evals skill: run all component evals, the A/B/C experiment, the memory probe and the sentiment gap check. Then explain in docs/crisp_dm/05_evaluation.md which metrics are weak and why (use the *_errors.csv files).
 
 > CRISP-DM loop: pick the weakest component, make one improvement (e.g. prompt v2 with few-shot examples), re-run its eval, and log before → after in docs/crisp_dm/iterations.md.
 
