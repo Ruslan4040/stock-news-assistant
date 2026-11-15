@@ -6,7 +6,7 @@ This is a course prototype. It is not financial advice.
 
 - What we build: [docs/PROJECT_SPEC.md](docs/PROJECT_SPEC.md)
 - How the coding agent works: [AGENTS.md](AGENTS.md), [CLAUDE.md](CLAUDE.md), skills in [.claude/skills/](.claude/skills/)
-- Report: [docs/REPORT.md](docs/REPORT.md) · demo script: [docs/demo_script.md](docs/demo_script.md)
+- Report: [docs/REPORT.md](docs/REPORT.md) ([PDF](docs/REPORT.pdf)) · demo script: [docs/demo_script.md](docs/demo_script.md)
 - CRISP-DM logs: [docs/crisp_dm/](docs/crisp_dm/)
 
 ## Setup
