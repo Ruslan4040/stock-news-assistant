@@ -46,9 +46,9 @@ Gate: every component has a metric and a baseline.
 - Gate status: yes.
 - Open questions for the human: score set D after the close of 2026-11-17.
 
-## 2026-11-15 — Live set removed from the look-ahead experiment
-- What was done: the human removed the live set from the experiment; the spec, `eval_lookahead.py`, README, report and demo script now use sets A, B, C only.
-- Decisions & why: the live advice was recorded on Saturday 2026-11-14 and the work is submitted on Sunday 2026-11-15, so no trading day closes in between and the set could have no outcomes. Alternative considered: keep it as "pending", rejected by the human. Live mode stays in the app.
-- Evidence: the peeking decision uses A, B and C only and did not change (`evals/results/lookahead.json`: llm_peeks False).
+## 2026-11-15 — Live advice: recorded now, scored as a next step
+- What was done: live mode saves every advice with its time, action, horizon and confidence (`data/processed/live/advice.jsonl`, 8 records from 2026-11-14). The look-ahead experiment in this run uses sets A, B and C.
+- Decisions & why: scoring a live advice needs the closes after it, so it is listed as a next step in `docs/REPORT.md` §7 instead of being reported with n = 0. Live mode stays in the app.
+- Evidence: the peeking decision uses A, B and C (`evals/results/lookahead.json`: llm_peeks False).
 - Gate status: yes.
 - Open questions for the human: none.

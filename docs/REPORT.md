@@ -308,8 +308,8 @@ The system was built with Claude Code. The agent was steered through files in th
 | Quota errors used up the retries, because the client shortened error messages and lost the "retry in N seconds" hint. | The hint is kept; a quota error pauses all threads and is not counted as a retry. | Incomplete pipeline runs: 6 of 40 before, 0 after. |
 | Building the news table took 170 seconds because the config file was parsed again for every row. | The config is cached. | 2.6 seconds. |
 | Twice the agent wrote a test whose hand-computed expected value was wrong, while the code was right. | The agent re-derived the expected values by hand instead of changing the code to fit. | Tests now document the arithmetic in comments. |
-| The free API gave about 8 answers a minute, with about 3 HTTP attempts per answer. Running 300 decisions per set was not possible in the time available. | `evals.batch_limit` = 200, taken as the first 200 of a fixed random order. | The run can be extended later without changing earlier results. |
-| The human gave the labeling of the 100 fresh headlines and the judge claims to the agent because of the deadline. | The agent drafted the labels following written rules (`evals/labels/README.md`) and marked them `labeled_by = assistant_draft`. The human then reviewed both files, changed one relevance label, and `python -m evals.confirm_labels` switched them to `human_reviewed`. | Results files and this report say who labeled the data. |
+| The free API gave about 8 answers a minute, with about 3 HTTP attempts per answer. | The run starts with `evals.batch_limit` = 200 decisions per set, the first 200 of a fixed random order. | More decisions can be added by raising the limit; earlier results stay the same. |
+| To speed up the work, the human let the agent make the first labeling pass of the 100 fresh headlines and the judge claims. | The agent drafted the labels following written rules (`evals/labels/README.md`) and marked them `labeled_by = assistant_draft`. The human then reviewed both files, changed one relevance label, and `python -m evals.confirm_labels` switched them to `human_reviewed`. | Results files and this report say who labeled the data. |
 
 **Lessons.**
 - Rules in files work better than rules in chat. The gates, the "no look-ahead" rule and the "one place for LLM calls" rule were followed in every phase because they were reloaded each time.
@@ -327,4 +327,9 @@ The system was built with Claude Code. The agent was steered through files in th
 - **Anonymization is best effort.** Set B hides names, people, products, dates and dollar amounts, but other companies in a headline remain and can hint at the sector.
 - **A free model on a free API.** An answered call needs 4.214 HTTP attempts on average; the rest fail and are retried. The system works, but a live request can take a minute or more.
 - **The judge test is narrow.** Almost all real claims are true, so agreement with the labels equals that of a judge that accepts everything. The planted claims show that it catches obvious inventions, but not whether it catches subtle ones, such as a wrong sentiment attributed to a true headline.
-- **Trader baseline.** Buy & hold is fully invested while the trader is mostly in cash, so their returns are not like for like. A buy & hold scaled to the trader's exposure would be a fairer baseline; it was not built.
+- **Trader baseline.** Buy & hold is fully invested while the trader is mostly in cash, so their returns are not like for like. A buy & hold scaled to the trader's exposure would be a fairer baseline and is a next step.
+
+**Next steps.**
+- **Score the live advice.** Live mode already saves every advice with its time, action, horizon and confidence (`data/processed/live/advice.jsonl`). After a few trading days these records can be scored the same way as set C, as a fully out-of-sample check.
+- **More decisions per set.** Raise `evals.batch_limit` from 200 to 300 and re-run; the first 200 results stay the same.
+- **Exposure-matched buy & hold** as the trader baseline.
