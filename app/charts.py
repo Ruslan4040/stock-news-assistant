@@ -24,15 +24,15 @@ def _layout(figure: go.Figure, colors: dict, title: str, money: str) -> go.Figur
         font={"family": FONT, "color": colors["secondary"]},
         paper_bgcolor=colors["surface"], plot_bgcolor=colors["surface"],
         hovermode="x unified", height=360,
-        margin={"l": 10, "r": 90, "t": 48, "b": 10},
+        margin={"l": 70, "r": 90, "t": 48, "b": 40},
         legend={"orientation": "h", "y": 1.08, "x": 0, "font": {"color": colors["secondary"]}},
     )
     ticks = {"color": colors["muted"]}
-    figure.update_xaxes(showgrid=False, linecolor=colors["axis"], tickfont=ticks,
+    figure.update_xaxes(showgrid=False, linecolor=colors["axis"], tickfont=ticks, automargin=True,
                         showspikes=True, spikemode="across", spikethickness=1,
                         spikedash="solid", spikecolor=colors["axis"])
     figure.update_yaxes(gridcolor=colors["grid"], zeroline=False, tickprefix=money,
-                        tickformat=",.0f", tickfont=ticks)
+                        tickformat=",.0f", tickfont=ticks, automargin=True)
     return figure
 
 
