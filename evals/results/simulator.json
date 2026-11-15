@@ -1,6 +1,6 @@
 {
  "component": "simulator",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": null,
  "prompt_version": null,
  "eval_data": "stored advice of sets A, B, C + data/raw/prices",
@@ -2007,7 +2007,7 @@
    ]
   },
   "C": {
-   "signals": 199,
+   "signals": 200,
    "buy_signals_at_threshold": 25,
    "mean_exposure": 0.0952,
    "days": [

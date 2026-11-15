@@ -1,6 +1,6 @@
 {
  "component": "llm_client",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": null,
  "prompt_version": null,
  "eval_data": "logs/llm_calls.jsonl (all runs)",
@@ -8,67 +8,67 @@
  "metrics": [
   {
    "name": "valid_json_first_answer_rate",
-   "value": 0.9982259018332348,
-   "ci_low": 0.9958604376108812,
+   "value": 0.9982290436835891,
+   "ci_low": 0.9958677685950413,
    "ci_high": 1.0,
-   "n": 1691,
+   "n": 1694,
    "baselines": {}
   },
   {
    "name": "invalid_after_retry_rate",
-   "value": 0.0005899705014749262,
+   "value": 0.0005889281507656066,
    "ci_low": 0.0,
-   "ci_high": 0.0017699115044247787,
-   "n": 1695,
+   "ci_high": 0.0017667844522968198,
+   "n": 1698,
    "baselines": {},
    "count": 1
   },
   {
    "name": "transport_error_rate",
-   "value": 0.002359882005899705,
-   "ci_low": 0.0005899705014749262,
-   "ci_high": 0.00473451327433627,
-   "n": 1695,
+   "value": 0.002355712603062426,
+   "ci_low": 0.0005889281507656066,
+   "ci_high": 0.004711425206124852,
+   "n": 1698,
    "baselines": {},
    "count": 4
   },
   {
    "name": "mean_latency_s",
-   "value": 140.54845486725662,
-   "ci_low": 134.48268380530973,
-   "ci_high": 146.91274222713864,
-   "n": 1695,
+   "value": 140.36885983510012,
+   "ci_low": 133.89069112190813,
+   "ci_high": 146.90190605123675,
+   "n": 1698,
    "baselines": {}
   },
   {
    "name": "mean_http_attempts_per_call",
-   "value": 4.2176991150442475,
-   "ci_low": 4.0182595870206494,
-   "ci_high": 4.4177433628318585,
-   "n": 1695,
+   "value": 4.213780918727915,
+   "ci_low": 4.009893992932862,
+   "ci_high": 4.426972909305065,
+   "n": 1698,
    "baselines": {}
   },
   {
    "name": "cache_hit_rate",
-   "value": 0.4646241313960834,
-   "ci_low": 0.44724415666456097,
-   "ci_high": 0.48168035375868606,
-   "n": 3166,
+   "value": 0.6457333611516796,
+   "ci_low": 0.6332151053619862,
+   "ci_high": 0.6584602545378677,
+   "n": 4793,
    "baselines": {}
   }
  ],
  "details": {
-  "calls_total": 3166,
-  "calls_fresh": 1695,
+  "calls_total": 4793,
+  "calls_fresh": 1698,
   "per_component": [
    {
     "component": "advisor",
-    "calls": 710,
+    "calls": 711,
     "valid_first_rate": 0.9986,
     "invalid_after_retry": 0,
     "transport_errors": 0,
-    "mean_latency_s": 152.9,
-    "mean_attempts": 4.74
+    "mean_latency_s": 152.7,
+    "mean_attempts": 4.73
    },
    {
     "component": "judge",
@@ -90,21 +90,21 @@
    },
    {
     "component": "relevance",
-    "calls": 419,
+    "calls": 420,
     "valid_first_rate": 1.0,
     "invalid_after_retry": 0,
     "transport_errors": 3,
-    "mean_latency_s": 141.2,
-    "mean_attempts": 4.06
+    "mean_latency_s": 140.9,
+    "mean_attempts": 4.05
    },
    {
     "component": "sentiment",
-    "calls": 435,
+    "calls": 436,
     "valid_first_rate": 0.9954,
     "invalid_after_retry": 1,
     "transport_errors": 1,
-    "mean_latency_s": 126.9,
-    "mean_attempts": 3.84
+    "mean_latency_s": 126.7,
+    "mean_attempts": 3.83
    }
   ],
   "note": "transport errors are API failures (5xx, cut answers); invalid_after_retry counts answers that broke the schema twice"

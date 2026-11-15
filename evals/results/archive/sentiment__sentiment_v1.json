@@ -1,6 +1,6 @@
 {
  "component": "sentiment",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": "google/gemma-4-31b-it:free",
  "prompt_version": "sentiment_v1",
  "eval_data": "data/processed/phrasebank_sample.csv + evals/labels/fresh_headlines.csv",
@@ -29,6 +29,28 @@
    }
   },
   {
+   "name": "phrasebank_heldout.accuracy",
+   "value": 0.8966666666666666,
+   "ci_low": 0.8633333333333333,
+   "ci_high": 0.93,
+   "n": 300,
+   "baselines": {
+    "finbert": 0.94,
+    "always_neutral": 0.6067
+   }
+  },
+  {
+   "name": "phrasebank_heldout.macro_f1",
+   "value": 0.9011842897385219,
+   "ci_low": 0.8615037439121603,
+   "ci_high": 0.9328780042187751,
+   "n": 300,
+   "baselines": {
+    "finbert": 0.9265,
+    "always_neutral": 0.2517
+   }
+  },
+  {
    "name": "fresh.accuracy",
    "value": 0.91,
    "ci_low": 0.85,
@@ -52,24 +74,24 @@
   },
   {
    "name": "fresh_relevant.accuracy",
-   "value": 0.9230769230769231,
-   "ci_low": 0.8461538461538461,
+   "value": 0.925,
+   "ci_low": 0.85,
    "ci_high": 1.0,
-   "n": 39,
+   "n": 40,
    "baselines": {
-    "finbert": 0.3846,
-    "always_neutral": 0.3333
+    "finbert": 0.4,
+    "always_neutral": 0.35
    }
   },
   {
    "name": "fresh_relevant.macro_f1",
-   "value": 0.930880713489409,
-   "ci_low": 0.8465884170653908,
+   "value": 0.9343589743589744,
+   "ci_low": 0.8524025470653377,
    "ci_high": 1.0,
-   "n": 39,
+   "n": 40,
    "baselines": {
-    "finbert": 0.3863,
-    "always_neutral": 0.1667
+    "finbert": 0.3959,
+    "always_neutral": 0.1728
    }
   }
  ],
@@ -107,6 +129,42 @@
     "neutral": 244,
     "positive": 115,
     "negative": 41
+   },
+   "llm_errors": 0
+  },
+  "phrasebank_heldout": {
+   "confusion_rows_truth_cols_predicted": {
+    "labels": [
+     "negative",
+     "neutral",
+     "positive",
+     "error"
+    ],
+    "matrix": [
+     [
+      34,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      152,
+      25,
+      0
+     ],
+     [
+      0,
+      1,
+      83,
+      0
+     ]
+    ]
+   },
+   "class_balance": {
+    "neutral": 182,
+    "positive": 84,
+    "negative": 34
    },
    "llm_errors": 0
   },
@@ -163,7 +221,7 @@
      ],
      [
       0,
-      10,
+      11,
       3,
       0
      ],
@@ -177,7 +235,7 @@
    },
    "class_balance": {
     "positive": 18,
-    "neutral": 13,
+    "neutral": 14,
     "negative": 8
    },
    "llm_errors": 0
@@ -187,7 +245,7 @@
    "finbert": 0.4799999999999999
   },
   "labeled_by": {
-   "assistant_draft": 100
+   "human_reviewed": 100
   }
  }
 }

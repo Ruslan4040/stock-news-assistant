@@ -114,21 +114,23 @@ Metric names start with the set letter where it applies (A, B, C, D). Analysis: 
 | data | missing_outcome_rate | 0.000 | [0.000, 0.000] |  | 600 |  |  |
 | features | exact_match_rate | 1.000 | [1.000, 1.000] |  | 15 |  |  |
 | features | max_abs_error | 0.000 |  |  | 15 |  |  |
-| llm_client | valid_json_first_answer_rate | 0.998 | [0.996, 1.000] |  | 1691 |  |  |
-| llm_client | invalid_after_retry_rate | 0.001 | [0.000, 0.002] |  | 1695 |  |  |
-| llm_client | transport_error_rate | 0.002 | [0.001, 0.005] |  | 1695 |  |  |
-| llm_client | mean_latency_s | 140.548 | [134.483, 146.913] |  | 1695 |  |  |
-| llm_client | mean_http_attempts_per_call | 4.218 | [4.018, 4.418] |  | 1695 |  |  |
-| llm_client | cache_hit_rate | 0.465 | [0.447, 0.482] |  | 3166 |  |  |
-| relevance | precision | 0.951 | [0.872, 1.000] | keep_all 0.390; keyword 0.848 | 100 | relevance_v1 | google/gemma-4-31b-it:free |
-| relevance | recall | 1.000 | [1.000, 1.000] | keep_all 1.000; keyword 1.000 | 100 | relevance_v1 | google/gemma-4-31b-it:free |
-| relevance | f1 | 0.975 | [0.931, 1.000] | keep_all 0.561; keyword 0.918 | 100 | relevance_v1 | google/gemma-4-31b-it:free |
+| llm_client | valid_json_first_answer_rate | 0.998 | [0.996, 1.000] |  | 1694 |  |  |
+| llm_client | invalid_after_retry_rate | 0.001 | [0.000, 0.002] |  | 1698 |  |  |
+| llm_client | transport_error_rate | 0.002 | [0.001, 0.005] |  | 1698 |  |  |
+| llm_client | mean_latency_s | 140.369 | [133.891, 146.902] |  | 1698 |  |  |
+| llm_client | mean_http_attempts_per_call | 4.214 | [4.010, 4.427] |  | 1698 |  |  |
+| llm_client | cache_hit_rate | 0.646 | [0.633, 0.658] |  | 4793 |  |  |
+| relevance | precision | 0.951 | [0.872, 1.000] | keep_all 0.400; keyword 0.848 | 100 | relevance_v1 | google/gemma-4-31b-it:free |
+| relevance | recall | 0.975 | [0.921, 1.000] | keep_all 1.000; keyword 0.975 | 100 | relevance_v1 | google/gemma-4-31b-it:free |
+| relevance | f1 | 0.963 | [0.909, 1.000] | keep_all 0.571; keyword 0.907 | 100 | relevance_v1 | google/gemma-4-31b-it:free |
 | sentiment | phrasebank.accuracy | 0.892 | [0.863, 0.920] | finbert 0.940; always_neutral 0.610 | 400 | sentiment_v1 | google/gemma-4-31b-it:free |
 | sentiment | phrasebank.macro_f1 | 0.899 | [0.865, 0.927] | finbert 0.927; always_neutral 0.253 | 400 | sentiment_v1 | google/gemma-4-31b-it:free |
+| sentiment | phrasebank_heldout.accuracy | 0.897 | [0.863, 0.930] | finbert 0.940; always_neutral 0.607 | 300 | sentiment_v1 | google/gemma-4-31b-it:free |
+| sentiment | phrasebank_heldout.macro_f1 | 0.901 | [0.862, 0.933] | finbert 0.926; always_neutral 0.252 | 300 | sentiment_v1 | google/gemma-4-31b-it:free |
 | sentiment | fresh.accuracy | 0.910 | [0.850, 0.960] | finbert 0.460; always_neutral 0.740 | 100 | sentiment_v1 | google/gemma-4-31b-it:free |
 | sentiment | fresh.macro_f1 | 0.898 | [0.810, 0.960] | finbert 0.333; always_neutral 0.283 | 100 | sentiment_v1 | google/gemma-4-31b-it:free |
-| sentiment | fresh_relevant.accuracy | 0.923 | [0.846, 1.000] | finbert 0.385; always_neutral 0.333 | 39 | sentiment_v1 | google/gemma-4-31b-it:free |
-| sentiment | fresh_relevant.macro_f1 | 0.931 | [0.847, 1.000] | finbert 0.386; always_neutral 0.167 | 39 | sentiment_v1 | google/gemma-4-31b-it:free |
+| sentiment | fresh_relevant.accuracy | 0.925 | [0.850, 1.000] | finbert 0.400; always_neutral 0.350 | 40 | sentiment_v1 | google/gemma-4-31b-it:free |
+| sentiment | fresh_relevant.macro_f1 | 0.934 | [0.852, 1.000] | finbert 0.396; always_neutral 0.173 | 40 | sentiment_v1 | google/gemma-4-31b-it:free |
 | advisor | A.hit_rate | 0.496 | [0.405, 0.580] | always_buy 0.664; same_as_last_move 0.420 | 131 | advisor_v1 | google/gemma-4-31b-it:free |
 | advisor | A.directional_share | 0.655 |  |  | 200 | advisor_v1 | google/gemma-4-31b-it:free |
 | advisor | A.mean_return_chosen_horizon_pct | -0.030 | [-1.011, 0.912] | fixed_1d -0.045; fixed_1w -0.049 | 131 | advisor_v1 | google/gemma-4-31b-it:free |
@@ -141,11 +143,11 @@ Metric names start with the set letter where it applies (A, B, C, D). Analysis: 
 | advisor | B.hit_rate_confidence_50_60 | 0.167 | [0.000, 0.500] |  | 6 | advisor_v1 | google/gemma-4-31b-it:free |
 | advisor | B.hit_rate_confidence_60_80 | 0.492 | [0.410, 0.582] |  | 122 | advisor_v1 | google/gemma-4-31b-it:free |
 | advisor | B.hit_rate_confidence_80_100 | 0.667 | [0.000, 1.000] |  | 3 | advisor_v1 | google/gemma-4-31b-it:free |
-| advisor | C.hit_rate | 0.531 | [0.438, 0.615] | always_buy 0.454; same_as_last_move 0.523 | 130 | advisor_v1 | google/gemma-4-31b-it:free |
-| advisor | C.directional_share | 0.653 |  |  | 199 | advisor_v1 | google/gemma-4-31b-it:free |
-| advisor | C.mean_return_chosen_horizon_pct | 0.504 | [-0.569, 1.686] | fixed_1d 0.112; fixed_1w 0.469 | 130 | advisor_v1 | google/gemma-4-31b-it:free |
+| advisor | C.hit_rate | 0.527 | [0.435, 0.611] | always_buy 0.450; same_as_last_move 0.519 | 131 | advisor_v1 | google/gemma-4-31b-it:free |
+| advisor | C.directional_share | 0.655 |  |  | 200 | advisor_v1 | google/gemma-4-31b-it:free |
+| advisor | C.mean_return_chosen_horizon_pct | 0.443 | [-0.673, 1.573] | fixed_1d 0.092; fixed_1w 0.408 | 131 | advisor_v1 | google/gemma-4-31b-it:free |
 | advisor | C.hit_rate_confidence_50_60 | 0.400 | [0.000, 0.800] |  | 5 | advisor_v1 | google/gemma-4-31b-it:free |
-| advisor | C.hit_rate_confidence_60_80 | 0.526 | [0.431, 0.621] |  | 116 | advisor_v1 | google/gemma-4-31b-it:free |
+| advisor | C.hit_rate_confidence_60_80 | 0.521 | [0.427, 0.615] |  | 117 | advisor_v1 | google/gemma-4-31b-it:free |
 | advisor | C.hit_rate_confidence_80_100 | 0.667 | [0.333, 0.889] |  | 9 | advisor_v1 | google/gemma-4-31b-it:free |
 | judge | claims_supported_rate | 0.998 | [0.994, 1.000] |  | 100 | judge_v1 | google/gemma-4-31b-it:free |
 | judge | judge_label_agreement | 0.991 | [0.972, 1.000] | always_supported 0.991 | 109 | judge_v1 | google/gemma-4-31b-it:free |
@@ -167,7 +169,7 @@ Metric names start with the set letter where it applies (A, B, C, D). Analysis: 
 | simulator | C.n_trades | 23 |  |  | 23 |  |  |
 | lookahead | A.hit_rate | 0.496 | [0.405, 0.580] | always_buy 0.664 | 131 | memory_probe_v1 | google/gemma-4-31b-it:free |
 | lookahead | B.hit_rate | 0.481 | [0.397, 0.565] | always_buy 0.672 | 131 | memory_probe_v1 | google/gemma-4-31b-it:free |
-| lookahead | C.hit_rate | 0.531 | [0.438, 0.615] | always_buy 0.454 | 130 | memory_probe_v1 | google/gemma-4-31b-it:free |
+| lookahead | C.hit_rate | 0.527 | [0.435, 0.611] | always_buy 0.450 | 131 | memory_probe_v1 | google/gemma-4-31b-it:free |
 | lookahead | A_minus_B.hit_rate_paired | 0.000 | [0.000, 0.000] |  | 124 | memory_probe_v1 | google/gemma-4-31b-it:free |
 | lookahead | D.hit_rate | n/a |  |  | 0 | memory_probe_v1 | google/gemma-4-31b-it:free |
 | lookahead | memory_probe.2019.within_5pct | 0.360 | [0.240, 0.500] |  | 50 | memory_probe_v1 | google/gemma-4-31b-it:free |

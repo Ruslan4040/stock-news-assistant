@@ -37,3 +37,11 @@ Gate: every component has a metric and a baseline.
 - Evidence: `evals/results/targets.json` — 13 of 13 phase-1 criteria met on the point estimate. Advisor on set C 0.531 vs always buy 0.454 (baseline inside the CI); memory probe 2019 0.36 vs 0 after the cutoff; A and B give the same action in 0.93 of decisions → "the LLM peeks: no". Judge caught 20 of 20 planted claims. `pytest`: 138 passed; `ruff`: clean.
 - Gate status: yes — every component has a metric, a baseline (or a fixed target for deterministic code), n and a CI.
 - Open questions for the human: review `evals/labels/fresh_headlines.csv` and `judge_claims.csv`, then `python -m evals.confirm_labels` and `python -m evals.run_all`. Set D outcomes need a re-run of `eval_lookahead` after 2026-11-17.
+
+## 2026-11-15 — Human review of the labels
+- What was done: the human reviewed `evals/labels/fresh_headlines.csv` (100) and `judge_claims.csv` (109); `python -m evals.confirm_labels` set `labeled_by = human_reviewed`; `python -m evals.run_all` re-ran every eval.
+- Decisions & why: one change, F003 "Is a 100-Year Bond Worth Buying?" (GOOGL) relevant n → y, because the bond in the news is Alphabet's. Judge claims unchanged. Report wording now says "drafted by the assistant, reviewed by the human", not "labeled by the human".
+- Artifacts: both label files, `evals/results/*.json`, `relevance_errors.csv`, `docs/REPORT.md`, `docs/REPORT.pdf`, `docs/demo_script.md`, README table.
+- Evidence: values from `evals/results/relevance.json` and `targets.json` after the run (relevance confusion tp 39, fp 2, fn 1); targets met 13 of 13.
+- Gate status: yes.
+- Open questions for the human: score set D after the close of 2026-11-17.

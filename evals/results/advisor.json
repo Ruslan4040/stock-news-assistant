@@ -1,6 +1,6 @@
 {
  "component": "advisor",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": "google/gemma-4-31b-it:free",
  "prompt_version": "advisor_v1",
  "eval_data": "data/processed/runs/advice_{a,b,c}.jsonl + data/processed/outcomes.csv",
@@ -116,32 +116,32 @@
   },
   {
    "name": "C.hit_rate",
-   "value": 0.5307692307692308,
-   "ci_low": 0.43846153846153846,
-   "ci_high": 0.6153846153846154,
-   "n": 130,
+   "value": 0.5267175572519084,
+   "ci_low": 0.4351145038167939,
+   "ci_high": 0.6106870229007634,
+   "n": 131,
    "baselines": {
-    "always_buy": 0.4538,
-    "same_as_last_move": 0.5231
+    "always_buy": 0.4504,
+    "same_as_last_move": 0.5191
    }
   },
   {
    "name": "C.directional_share",
-   "value": 0.6532663316582915,
+   "value": 0.655,
    "ci_low": null,
    "ci_high": null,
-   "n": 199,
+   "n": 200,
    "baselines": {}
   },
   {
    "name": "C.mean_return_chosen_horizon_pct",
-   "value": 0.5035913438841992,
-   "ci_low": -0.5691585601251621,
-   "ci_high": 1.6856886991539177,
-   "n": 130,
+   "value": 0.44256423806617234,
+   "ci_low": -0.6734570179714618,
+   "ci_high": 1.5730514451198183,
+   "n": 131,
    "baselines": {
-    "fixed_1d": 0.1121,
-    "fixed_1w": 0.4687
+    "fixed_1d": 0.0919,
+    "fixed_1w": 0.4079
    }
   },
   {
@@ -154,10 +154,10 @@
   },
   {
    "name": "C.hit_rate_confidence_60_80",
-   "value": 0.5258620689655172,
-   "ci_low": 0.43103448275862066,
-   "ci_high": 0.6206896551724138,
-   "n": 116,
+   "value": 0.5213675213675214,
+   "ci_low": 0.42735042735042733,
+   "ci_high": 0.6153846153846154,
+   "n": 117,
    "baselines": {}
   },
   {
@@ -230,31 +230,31 @@
   },
   "C": {
    "decisions": 200,
-   "valid": 199,
-   "incomplete_transport": 1,
+   "valid": 200,
+   "incomplete_transport": 0,
    "invalid_output": 0,
    "actions": {
-    "buy": 80,
+    "buy": 81,
     "hold": 69,
     "sell": 50
    },
    "horizons": {
-    "1w": 198,
+    "1w": 199,
     "1d": 1
    },
-   "news_used_share": 0.9899,
-   "mean_confidence": 63.8,
+   "news_used_share": 0.99,
+   "mean_confidence": 63.82,
    "hit_rate_by_action": {
-    "buy": 0.4875,
+    "buy": 0.4815,
     "sell": 0.6
    },
    "hit_rate_by_horizon": {
     "1d": 1.0,
-    "1w": 0.5271
+    "1w": 0.5231
    },
    "hit_rate_by_news_used": {
     "false": 1.0,
-    "true": 0.5271
+    "true": 0.5231
    }
   }
  }

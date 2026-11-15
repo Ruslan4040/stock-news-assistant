@@ -1,6 +1,6 @@
 {
  "component": "data",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": null,
  "prompt_version": null,
  "eval_data": "all downloaded prices, raw Kaggle rows of the 8 tickers, sets A/B/C",

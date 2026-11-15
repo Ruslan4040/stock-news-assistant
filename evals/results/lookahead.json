@@ -1,6 +1,6 @@
 {
  "component": "lookahead",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": "google/gemma-4-31b-it:free",
  "prompt_version": "memory_probe_v1",
  "eval_data": "advisor runs on sets A/B/C, live advice (D), price files, sentiment eval data",
@@ -28,12 +28,12 @@
   },
   {
    "name": "C.hit_rate",
-   "value": 0.5307692307692308,
-   "ci_low": 0.43846153846153846,
-   "ci_high": 0.6153846153846154,
-   "n": 130,
+   "value": 0.5267175572519084,
+   "ci_low": 0.4351145038167939,
+   "ci_high": 0.6106870229007634,
+   "n": 131,
    "baselines": {
-    "always_buy": 0.4538
+    "always_buy": 0.4504
    }
   },
   {

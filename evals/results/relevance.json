@@ -1,6 +1,6 @@
 {
  "component": "relevance",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": "google/gemma-4-31b-it:free",
  "prompt_version": "relevance_v1",
  "eval_data": "evals/labels/fresh_headlines.csv",
@@ -13,30 +13,30 @@
    "ci_high": 1.0,
    "n": 100,
    "baselines": {
-    "keep_all": 0.39,
+    "keep_all": 0.4,
     "keyword": 0.8478
    }
   },
   {
    "name": "recall",
-   "value": 1.0,
-   "ci_low": 1.0,
+   "value": 0.975,
+   "ci_low": 0.9209992887624466,
    "ci_high": 1.0,
    "n": 100,
    "baselines": {
     "keep_all": 1.0,
-    "keyword": 1.0
+    "keyword": 0.975
    }
   },
   {
    "name": "f1",
-   "value": 0.975,
-   "ci_low": 0.9314749920356803,
+   "value": 0.9629629629629629,
+   "ci_low": 0.9090909090909091,
    "ci_high": 1.0,
    "n": 100,
    "baselines": {
-    "keep_all": 0.5612,
-    "keyword": 0.9176
+    "keep_all": 0.5714,
+    "keyword": 0.907
    }
   }
  ],
@@ -44,13 +44,13 @@
   "confusion": {
    "tp": 39,
    "fp": 2,
-   "fn": 0,
-   "tn": 59
+   "fn": 1,
+   "tn": 58
   },
   "llm_errors": 0,
   "labeled_by": {
-   "assistant_draft": 100
+   "human_reviewed": 100
   },
-  "relevant_share": 0.39
+  "relevant_share": 0.4
  }
 }

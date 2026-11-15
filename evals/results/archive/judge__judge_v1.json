@@ -1,6 +1,6 @@
 {
  "component": "judge",
- "run_date": "2026-11-14",
+ "run_date": "2026-11-15",
  "model": "google/gemma-4-31b-it:free",
  "prompt_version": "judge_v1",
  "eval_data": "100 advisor explanations (sets A and C) + evals/labels/judge_claims.csv",
@@ -40,7 +40,7 @@
  "details": {
   "judge_errors": 0,
   "labeled_by": {
-   "assistant_draft": 109
+   "human_reviewed": 109
   },
   "planted_shift_pct": 6.5,
   "claims_per_explanation": 5.47

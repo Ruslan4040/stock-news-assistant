@@ -2,7 +2,7 @@
 
 Assignment 1, "Build an NLP System". Repository: https://github.com/Ruslan4040/stock-news-assistant
 
-Every number in this report is filled in from a file in `evals/results/` by `python -m evals.render_docs`. Results date: 2026-11-14. Model: `google/gemma-4-31b-it:free`.
+Every number in this report is filled in from a file in `evals/results/` by `python -m evals.render_docs`. Results date: 2026-11-15. Model: `google/gemma-4-31b-it:free`.
 
 ## 1. Task and scope
 
@@ -132,12 +132,12 @@ The targets were written down before any evaluation was run. "Not measured" mean
 | Features | exact match on 15 of 15 cases | 15 of 15 | yes |
 | LLM client | valid JSON on the first answer ≥ 0.95; invalid after retry ≤ 0.02 | 0.998; 0.001 | yes |
 | UI | all demo cases pass the checklist | 3 of 3 | yes |
-| Relevance filter | F1 ≥ 0.80, precision ≥ 0.80, F1 above keep-all | F1 0.975, precision 0.951, keep-all F1 0.561 | yes |
+| Relevance filter | F1 ≥ 0.80, precision ≥ 0.80, F1 above keep-all | F1 0.963, precision 0.951, keep-all F1 0.571 | yes |
 | Sentiment (PhraseBank) | macro-F1 ≥ 0.80, above always-neutral, within 0.05 of FinBERT | 0.899 (FinBERT 0.927, always-neutral 0.253) | yes |
 | Sentiment (fresh headlines) | macro-F1 ≥ 0.70 | 0.898 | yes |
 | Explanations | claims supported ≥ 0.90; judge vs label agreement ≥ 0.80 | 0.998; 0.991 | yes |
-| Advisor: direction (set C) | hit rate above always-buy and same-as-last-move | 0.531 vs 0.454 and 0.523 | yes |
-| Advisor: horizon (set C) | mean return with the chosen horizon ≥ the better fixed one | 0.504% vs 0.469% | yes |
+| Advisor: direction (set C) | hit rate above always-buy and same-as-last-move | 0.527 vs 0.450 and 0.519 | yes |
+| Advisor: horizon (set C) | mean return with the chosen horizon ≥ the better fixed one | 0.443% vs 0.408% | yes |
 | Advisor: confidence (set C) | bucket 80–100 at least 5 points above bucket 50–60 | 0.667 vs 0.400 | yes |
 | Trader (set C) | total return > 0 and max drawdown below buy & hold | return 0.025, drawdown 0.064 vs 0.292 | yes |
 | Look-ahead experiment | a clear yes / no by the rule of spec §8 | the LLM peeks: False | yes |
@@ -157,28 +157,28 @@ These rows are "met, but not shown to be better than chance". The data, feature,
 | Data collector | look-ahead violations in sets A and C | 0 | 7,478 headlines |
 | Data collector | set-B headlines that still show a name, a year or a dollar amount | 0 | 3,013 headlines |
 | Features | exact match with the independent reference (tolerance 1e-6) | 15 of 15 | 3 tickers × 5 dates |
-| LLM client | valid JSON on the first answer | 99.8% [99.6%, 100.0%] | 1,691 answered calls |
-| LLM client | still invalid after the repair retry | 0.1% | 1,695 calls |
-| LLM client | calls lost to API failures after all retries | 0.2% | 1,695 calls |
-| LLM client | HTTP attempts per answered call; seconds per call | 4.218; 140.548 | 1,695 calls |
-| LLM client | cache hit rate over all logged calls | 46.5% | 3,166 calls |
+| LLM client | valid JSON on the first answer | 99.8% [99.6%, 100.0%] | 1,694 answered calls |
+| LLM client | still invalid after the repair retry | 0.1% | 1,698 calls |
+| LLM client | calls lost to API failures after all retries | 0.2% | 1,698 calls |
+| LLM client | HTTP attempts per answered call; seconds per call | 4.214; 140.369 | 1,698 calls |
+| LLM client | cache hit rate over all logged calls | 64.6% | 4,793 calls |
 | UI | checklist items passed on the demo cases | 21 of 21 | 3 cases |
 
 **Analysis.**
-- **Results are not distorted by the client.** Almost every answer is valid JSON on the first try. Calls still invalid after the repair retry: 1 of 1,695. Calls lost to the API are counted separately (0.2%), so they never look like model mistakes: an advisor run with a lost language step is marked incomplete, not wrong.
-- **The free API is slow, not the model.** One answered call needs 4.218 HTTP attempts on average (500/503 errors and quota refusals). The mean time per call (140.548 s) is measured from the start of the call to a valid answer: it includes retries and the time the call waited behind 16 parallel threads for the 30-requests-a-minute quota.
+- **Results are not distorted by the client.** Almost every answer is valid JSON on the first try. Calls still invalid after the repair retry: 1 of 1,698. Calls lost to the API are counted separately (0.2%), so they never look like model mistakes: an advisor run with a lost language step is marked incomplete, not wrong.
+- **The free API is slow, not the model.** One answered call needs 4.214 HTTP attempts on average (500/503 errors and quota refusals). The mean time per call (140.369 s) is measured from the start of the call to a valid answer: it includes retries and the time the call waited behind 16 parallel threads for the 30-requests-a-minute quota.
 - **The cache.** It makes every eval re-run on the same machine free and identical. It is local (`.cache/llm`, about 7 MB, not in the repository), so a fresh clone calls the API again; at temperature 0 the answers were identical across repeats in the phase-4 smoke runs.
 
 ### 5.3 Relevance filter
-100 labeled fresh headlines, of which 39.0% are relevant.
+100 labeled fresh headlines, of which 40.0% are relevant.
 
 | System | Precision | Recall | F1 |
 |---|---|---|---|
-| LLM filter (`relevance_v1`) | 0.951 [0.872, 1.000] | 1.000 [1.000, 1.000] | 0.975 [0.931, 1.000] |
-| Baseline: keep all | 0.390 | 1.000 | 0.561 |
-| Baseline: keyword (headline names the company) | 0.848 | 1.000 | 0.918 |
+| LLM filter (`relevance_v1`) | 0.951 [0.872, 1.000] | 0.975 [0.921, 1.000] | 0.963 [0.909, 1.000] |
+| Baseline: keep all | 0.400 | 1.000 | 0.571 |
+| Baseline: keyword (headline names the company) | 0.848 | 0.975 | 0.907 |
 
-**Analysis.** The keep-all baseline shows why the filter exists: only 39.0% of the headlines that Finnhub tags with a ticker are about that company. The LLM filter lost no relevant headline (0 false negatives). Both false positives (2) are JPMorgan headlines in which the bank is the commentator, not the subject: "JPMorgan Flips Bullish on Bitcoin Over the Next Ten Years" and "JPMorgan drops blunt take on software stocks AI threat" (`evals/results/relevance_errors.csv`). They are borderline cases, and the keyword baseline makes the same mistake, because the name is in the headline. The keyword baseline is strong on fresh headlines because Finnhub headlines usually name the company they are about. The LLM is better on headlines that name the company only in passing: lists of stocks ("Zacks Investment Ideas feature highlights: JP Morgan, Home Depot, Lennar, …") and the CEO's personal remarks ("Elon Musk Fires Back At AOC …"). Keyword matching keeps them; the LLM drops them. The labels are an assistant draft (see §7), so these numbers can move after the human review.
+**Analysis.** The keep-all baseline shows why the filter exists: only 40.0% of the headlines that Finnhub tags with a ticker are about that company. The LLM filter lost 1 relevant headline: "Is a 100-Year Bond Worth Buying?" is tagged GOOGL, and the human reviewer marked it relevant because the 100-year bond in the news was issued by Alphabet. The headline itself does not name the company, so the model called it a "general finance topic"; the keyword baseline misses it too. Both false positives (2) are JPMorgan headlines in which the bank is the commentator, not the subject: "JPMorgan Flips Bullish on Bitcoin Over the Next Ten Years" and "JPMorgan drops blunt take on software stocks AI threat" (`evals/results/relevance_errors.csv`). They are borderline cases, and the keyword baseline makes the same mistake, because the name is in the headline. The keyword baseline is strong on fresh headlines because Finnhub headlines usually name the company they are about. The LLM is better on headlines that name the company only in passing: lists of stocks ("Zacks Investment Ideas feature highlights: JP Morgan, Home Depot, Lennar, …") and the CEO's personal remarks ("Elon Musk Fires Back At AOC …"). Keyword matching keeps them; the LLM drops them. Before the human review this headline was labeled not relevant, so the filter's single miss comes from that one changed label.
 
 ### 5.4 Sentiment labeler
 | Data | Metric | LLM (`sentiment_v1`) | FinBERT | Always neutral |
@@ -187,39 +187,39 @@ These rows are "met, but not shown to be better than chance". The data, feature,
 | PhraseBank sample | macro-F1 | 0.899 [0.865, 0.927] | 0.927 | 0.253 |
 | Fresh headlines (n = 100) | accuracy | 0.910 [0.850, 0.960] | 0.460 | 0.740 |
 | Fresh headlines | macro-F1 | 0.898 [0.810, 0.960] | 0.333 | 0.283 |
-| Fresh, relevant only (n = 39) | macro-F1 | 0.931 [0.847, 1.000] | 0.386 | 0.167 |
+| Fresh, relevant only (n = 40) | macro-F1 | 0.934 [0.852, 1.000] | 0.396 | 0.173 |
 
 **Analysis.**
 - **PhraseBank.** The LLM did not miss a single negative sentence. Almost all of its errors are neutral sentences that it called positive (confusion matrix in `evals/results/sentiment.json`), for example "The combined value of the orders is EUR 45mn." The model reads plain business facts (orders, launches, plans) as good news, while the PhraseBank annotators called them neutral.
 - **FinBERT on PhraseBank.** FinBERT scores higher here, but `ProsusAI/finbert` was fine-tuned on Financial PhraseBank, so this test favours it.
 - **Fresh headlines.** On real headlines from the fresh period FinBERT falls to a macro-F1 of 0.333, while the LLM keeps 0.898. This is the data the system actually sees.
-- **Errors on fresh headlines.** They are again neutral headlines labeled positive, mostly lists and market wrap-ups ("5 Stocks to Buy if AI Investing Comes Back Into Style"). The relevance filter removes most of these before sentiment is used, which is why the score on relevant headlines alone is higher (0.931).
+- **Errors on fresh headlines.** They are again neutral headlines labeled positive, mostly lists and market wrap-ups ("5 Stocks to Buy if AI Investing Comes Back Into Style"). The relevance filter removes most of these before sentiment is used, which is why the score on relevant headlines alone is higher (0.934).
 
 ### 5.5 Advisor
 Hit rate = the share of buy and sell advice where the price moved in the advised direction over the chosen horizon. Hold advice has no direction; its share is shown. Baselines are computed on the same rows.
 
 | | Set A (2019) | Set B (2019, anonymized) | Set C (after cutoff) |
 |---|---|---|---|
-| Decisions with valid advice | 200 | 200 | 199 |
-| Share with a direction (buy or sell) | 65.5% | 65.5% | 65.3% |
-| **Hit rate** | 49.6% [40.5%, 58.0%] | 48.1% [39.7%, 56.5%] | 53.1% [43.8%, 61.5%] |
-| Baseline: always buy | 66.4% | 67.2% | 45.4% |
-| Baseline: same as last move | 42.0% | 42.8% | 52.3% |
-| Mean return in the advised direction, chosen horizon | -0.030% | -0.079% | 0.504% |
-| Same advice, fixed 1 day / fixed 1 week | -0.045% / -0.049% | -0.103% / -0.098% | 0.112% / 0.469% |
+| Decisions with valid advice | 200 | 200 | 200 |
+| Share with a direction (buy or sell) | 65.5% | 65.5% | 65.5% |
+| **Hit rate** | 49.6% [40.5%, 58.0%] | 48.1% [39.7%, 56.5%] | 52.7% [43.5%, 61.1%] |
+| Baseline: always buy | 66.4% | 67.2% | 45.0% |
+| Baseline: same as last move | 42.0% | 42.8% | 51.9% |
+| Mean return in the advised direction, chosen horizon | -0.030% | -0.079% | 0.443% |
+| Same advice, fixed 1 day / fixed 1 week | -0.045% / -0.049% | -0.103% / -0.098% | 0.092% / 0.408% |
 | Hit rate, confidence 50–60 (n) | 22.2% (9) | 16.7% (6) | 40.0% (5) |
-| Hit rate, confidence 60–80 (n) | 51.3% (117) | 49.2% (122) | 52.6% (116) |
+| Hit rate, confidence 60–80 (n) | 51.3% (117) | 49.2% (122) | 52.1% (117) |
 | Hit rate, confidence 80–100 (n) | 60.0% (5) | 66.7% (3) | 66.7% (9) |
 
 **Analysis.**
-- **Direction, set C.** On the unseen period the advisor's hit rate (53.1%) is above "always buy" (45.4%) and "same as last move" (52.3%). Both baselines lie inside its interval, so with n = 130 this is not proof that the advice beats them.
+- **Direction, set C.** On the unseen period the advisor's hit rate (52.7%) is above "always buy" (45.0%) and "same as last move" (51.9%). Both baselines lie inside its interval, so with n = 131 this is not proof that the advice beats them.
 - **Direction, set A.** In 2019 the advisor is clearly worse than always buy. 2019 was a strongly rising year, so every sell call had to be right against the trend. Only 15.6% of the sell calls in set A were right, against 60.6% of the buy calls. In set C the sell calls were right 60.0% of the time. The advisor reacts to negative news in the same way in both periods; the market did not.
-- **Horizon.** The advisor chose one week in 198 of 200 decisions in set A and 198 of 199 in set C. The chosen horizon is therefore almost the same as "fixed 1 week", and the horizon criterion says little. A prompt with an explicit horizon rule was tried and rejected (§5.9).
-- **Confidence.** The hit rate rises from the lowest to the highest confidence bucket in all three sets, which is the expected direction. But the model gives a confidence between 60 and 80 to almost every answer (mean 63.8 on set C), so the outer buckets hold only a few decisions each, and their intervals are wide.
+- **Horizon.** The advisor chose one week in 198 of 200 decisions in set A and 199 of 200 in set C. The chosen horizon is therefore almost the same as "fixed 1 week", and the horizon criterion says little. A prompt with an explicit horizon rule was tried and rejected (§5.9).
+- **Confidence.** The hit rate rises from the lowest to the highest confidence bucket in all three sets, which is the expected direction. But the model gives a confidence between 60 and 80 to almost every answer (mean 63.82 on set C), so the outer buckets hold only a few decisions each, and their intervals are wide.
 - **A versus B.** Real names and dates (A) and the anonymized copy (B) give almost the same actions and hit rates; see §5.8.
 
 ### 5.6 Explanations and the judge
-The judge split 100 explanations into 547 factual claims. **99.8%** [99.4%, 100.0%] of the claims are supported by the advisor's inputs. On the 109 claims that also have a label, the judge agrees with the label in **99.1%** [97.2%, 100.0%] of cases (labels: {'assistant_draft': 109}).
+The judge split 100 explanations into 547 factual claims. **99.8%** [99.4%, 100.0%] of the claims are supported by the advisor's inputs. On the 109 claims that also have a label, the judge agrees with the label in **99.1%** [97.2%, 100.0%] of cases (labels: {'human_reviewed': 109}).
 
 **Analysis.**
 - **The explanations stay close to their inputs.** They mostly repeat the price features and headlines they were given. The only claim the judge rejected is reasoning, not an invented fact: "Medium volatility suggests a one-week horizon for negative momentum" (`evals/results/judge_errors.csv`).
@@ -247,7 +247,7 @@ The judge split 100 explanations into 547 factual claims. **99.8%** [99.4%, 100.
 |---|---|
 | Hit rate A (2019, real names) | 49.6% [40.5%, 58.0%], n = 131 |
 | Hit rate B (same rows, anonymized) | 48.1% [39.7%, 56.5%], n = 131 |
-| Hit rate C (after the knowledge cutoff) | 53.1% [43.8%, 61.5%], n = 130 |
+| Hit rate C (after the knowledge cutoff) | 52.7% [43.5%, 61.1%], n = 131 |
 | A minus B on the same decisions (paired) | 0.0% [0.0%, 0.0%], n = 124 |
 | Hit rate D (live, 1-day horizon) | n/a, n = 0 (8 advice recorded, 8 outcomes pending) |
 | Memory probe: 2019 closing prices within ± 5% | 36.0% [24.0%, 50.0%], n = 50 |
@@ -295,7 +295,7 @@ The system was built with Claude Code. The agent was steered through files in th
 **Context control.** The rules live in files that reload in every session, so nothing depends on chat history. The spec says what, `AGENTS.md` says how. The CRISP-DM logs carry the state from one phase to the next. Before any multi-file change the agent writes a plan and waits for approval; decisions that belong to the human are asked as explicit choices with a recommendation.
 
 **Quality control that does not rely on the agent's good behavior.**
-- `pytest` with the LLM always mocked (2026-11-14: all tests pass), and `ruff`.
+- `pytest` with the LLM always mocked (2026-11-15: all tests pass), and `ruff`.
 - `tests/test_conventions.py` fails when a function is longer than 40 lines or has no docstring or return type.
 - `tests/test_no_lookahead.py` fails when any decision of the real sets contains a headline from after its close.
 - Numbers in the README and in this report are rendered from results files, so the agent cannot type a metric by hand.
@@ -306,12 +306,12 @@ The system was built with Claude Code. The agent was steered through files in th
 |---|---|---|
 | The spec listed AAPL, MSFT, AMZN and META. The agent checked the data before coding and found no 2019 headlines for them. | The human chose replacement tickers; the spec and `config.yaml` were updated. | Sets A and C use the same 8 tickers. |
 | The human proposed several OpenRouter accounts to get around the limit of 50 free requests a day. The agent read the terms and the limits page first: several accounts are forbidden and do not raise the limit. | A free Google AI Studio key was connected to OpenRouter instead. | The daily limit no longer applies; the limit became 30 requests a minute. |
-| The first real run reported "invalid JSON" from the model. The raw answers showed that the provider had cut them short. | The client treats a cut answer as an API failure and retries it; a test covers it. | Invalid first answers: 3 of 8 before; afterwards 99.8% of 1,691 answers were valid on the first try (§5.2). |
+| The first real run reported "invalid JSON" from the model. The raw answers showed that the provider had cut them short. | The client treats a cut answer as an API failure and retries it; a test covers it. | Invalid first answers: 3 of 8 before; afterwards 99.8% of 1,694 answers were valid on the first try (§5.2). |
 | Quota errors used up the retries, because the client shortened error messages and lost the "retry in N seconds" hint. | The hint is kept; a quota error pauses all threads and is not counted as a retry. | Incomplete pipeline runs: 6 of 40 before, 0 after. |
 | Building the news table took 170 seconds because the config file was parsed again for every row. | The config is cached. | 2.6 seconds. |
 | Twice the agent wrote a test whose hand-computed expected value was wrong, while the code was right. | The agent re-derived the expected values by hand instead of changing the code to fit. | Tests now document the arithmetic in comments. |
 | The free API gave about 8 answers a minute, with about 3 HTTP attempts per answer. Running 300 decisions per set was not possible in the time available. | `evals.batch_limit` = 200, taken as the first 200 of a fixed random order. | The run can be extended later without changing earlier results. |
-| The human gave the labeling of the 100 fresh headlines and the judge claims to the agent because of the deadline. | The agent drafted the labels following written rules (`evals/labels/README.md`) and marked them `labeled_by = assistant_draft`; `python -m evals.confirm_labels` switches them to `human_reviewed` after the human review. | Results files and this report say who labeled the data. |
+| The human gave the labeling of the 100 fresh headlines and the judge claims to the agent because of the deadline. | The agent drafted the labels following written rules (`evals/labels/README.md`) and marked them `labeled_by = assistant_draft`. The human then reviewed both files, changed one relevance label, and `python -m evals.confirm_labels` switched them to `human_reviewed`. | Results files and this report say who labeled the data. |
 
 **Lessons.**
 - Rules in files work better than rules in chat. The gates, the "no look-ahead" rule and the "one place for LLM calls" rule were followed in every phase because they were reloaded each time.
@@ -321,13 +321,13 @@ The system was built with Claude Code. The agent was steered through files in th
 
 ## 7. Limitations
 
-- **Small samples.** 200 decisions per set give 130 directional calls on set C, so the interval of a hit rate is about ± 9 points. Differences smaller than that cannot be shown.
-- **Label provenance.** The 100 fresh labels and the judge check were drafted by the coding assistant ({'assistant_draft': 100}). The same assistant wrote the prompts, so agreement with the model may be optimistic until the human has reviewed the labels.
+- **Small samples.** 200 decisions per set give 131 directional calls on set C, so the interval of a hit rate is about ± 9 points. Differences smaller than that cannot be shown.
+- **Label provenance.** The 100 fresh labels and the judge claims were drafted by the coding assistant and then reviewed by the human ({'human_reviewed': 100}); the review changed one label. The same assistant wrote the prompts, and a reviewer who starts from a draft tends to accept it, so agreement with the model may still be optimistic.
 - **Different market periods.** 2019 was a rising market and the fresh period was not, so A and C differ in more than what the model can remember. The A versus B comparison (same rows) is the cleaner test.
 - **News window.** Only the 15 most recent headlines are used. For a busy ticker such as NVDA they cover the last 1.4 hours before the close, not 3 days. A keyword pre-filter would widen the window.
 - **Daily prices.** Trades execute at the close of the decision day, with no slippage. Undated 2019 news is pushed to the next day, which is safe but throws away same-day information.
 - **Anonymization is best effort.** Set B hides names, people, products, dates and dollar amounts, but other companies in a headline remain and can hint at the sector.
-- **A free model on a free API.** An answered call needs 4.218 HTTP attempts on average; the rest fail and are retried. The system works, but a live request can take a minute or more.
+- **A free model on a free API.** An answered call needs 4.214 HTTP attempts on average; the rest fail and are retried. The system works, but a live request can take a minute or more.
 - **The judge test is narrow.** Almost all real claims are true, so agreement with the labels equals that of a judge that accepts everything. The planted claims show that it catches obvious inventions, but not whether it catches subtle ones, such as a wrong sentiment attributed to a true headline.
 - **Trader baseline.** Buy & hold is fully invested while the trader is mostly in cash, so their returns are not like for like. A buy & hold scaled to the trader's exposure would be a fairer baseline; it was not built.
 - **Set D** has only the live advice recorded on the day of the run; its outcomes arrive after the next trading days.

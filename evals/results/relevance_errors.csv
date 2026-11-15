@@ -1,3 +1,4 @@
 id,ticker,type,headline,reason
+F003,GOOGL,false_negative,Is a 100-Year Bond Worth Buying?,General finance topic
 F045,JPM,false_positive,JPMorgan Flips Bullish on Bitcoin Over the Next Ten Years,Company's stance on Bitcoin
 F051,JPM,false_positive,JPMorgan drops blunt take on software stocks AI threat,Company's view on software stocks
